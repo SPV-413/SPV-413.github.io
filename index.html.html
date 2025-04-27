@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPV Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Space Background and Stars */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            overflow-x: hidden;
+            position: relative;
+        }
+        /* Star animation */
+        .stars, .stars2, .stars3 {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .stars {
+            background: transparent url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/img/stars.png') repeat top center;
+            animation: moveStars 200s linear infinite;
+            opacity: 0.5;
+        }
+        .stars2 {
+            background: transparent url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/img/stars2.png') repeat top center;
+            animation: moveStars 400s linear infinite;
+            opacity: 0.3;
+        }
+        .stars3 {
+            background: transparent url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/img/stars3.png') repeat top center;
+            animation: moveStars 600s linear infinite;
+            opacity: 0.2;
+        }
+        @keyframes moveStars {
+            from {background-position: 0 0;}
+            to {background-position: 10000px 10000px;}
+        }
+
+        header {
+            background: rgba(30, 30, 60, 0.95);
+            color: #fff;
+            padding: 2rem 0 1rem 0;
+            text-align: center;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.5);
+            border-bottom: 1px solid #2e3a4e;
+            z-index: 1;
+            position: relative;
+        }
+        nav {
+            background: rgba(44, 62, 80, 0.95);
+            text-align: center;
+            padding: 0.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3);
+        }
+        nav a {
+            color: #fff;
+            margin: 0 1.2rem;
+            text-decoration: none;
+            font-weight: bold;
+            text-shadow: 0 0 8px #00ffea80;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: #00ffe7;
+        }
+        section {
+            padding: 2rem;
+            background: rgba(20, 24, 38, 0.95);
+            margin: 2rem auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 32px 0 #00ffe733, 0 1.5px 8px 0 #000a;
+            max-width: 900px;
+            position: relative;
+            z-index: 1;
+        }
+        h2 {
+            color: #00ffe7;
+            text-shadow: 0 0 8px #00ffe7bb;
+            margin-top: 0;
+        }
+        h3 {
+            color: #fff;
+            margin-bottom: 0.6rem;
+            text-shadow: 0 0 8px #00ffe7bb;
+        }
+        ul {
+            list-style-type: square;
+            margin-left: 24px;
+            color: #d0eaff;
+        }
+        .project {
+            margin-bottom: 2.5rem;
+            background: rgba(34, 49, 63, 0.7);
+            border-radius: 10px;
+            padding: 1.2rem 1rem;
+            box-shadow: 0 2px 12px 0 #00ffe722;
+        }
+        footer {
+            background: rgba(30, 30, 60, 0.95);
+            color: #fff;
+            text-align: center;
+            padding: 1.2rem 0;
+            margin-top: 2rem;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border-top: 1px solid #2e3a4e;
+            z-index: 1;
+            position: relative;
+        }
+        a.project-link {
+            color: #00ffe7;
+            font-weight: bold;
+            text-shadow: 0 0 6px #00ffe7bb;
+        }
+        a.project-link:hover {
+            text-decoration: underline;
+            color: #fff;
+        }
+        .skills-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+        .skills-icons div {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(44, 62, 80, 0.7);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            color: #fff;
+            box-shadow: 0 1px 6px #00ffe722;
+        }
+        .skills-icons i {
+            font-size: 1.5rem;
+            color: #00ffe7;
+            text-shadow: 0 0 8px #00ffe7bb;
+        }
+        @media (max-width: 700px) {
+            section {
+                padding: 1rem;
+                margin: 1rem;
+            }
+            .skills-icons {
+                gap: 0.5rem;
+            }
+        }
+        @media (max-width: 500px) {
+            header {
+                font-size: 1.1rem;
+                padding: 1.2rem 0 0.5rem 0;
+            }
+            nav {
+                font-size: 0.95rem;
+            }
+            section {
+                padding: 0.7rem;
+                margin: 0.5rem;
+            }
+            .skills-icons {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+
+    <header>
+        <h1>Peraisoodan Viswanath S - Aspiring Data Scientist</h1>
+    </header>
+
+    <nav>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p style="color:#d0eaff;">
+            I am an aspiring Data Scientist who has successfully completed the Certified Data Scientist program at DataMites Global Training Institute. 
+            Currently, I am engaged in multiple projects as part of my internship with Rubixe - AI Solutions, where I am applying my skills in 
+            Statistics, Python, Machine Learning, Deep Learning and Data Visualization. This hands-on experience allows me to analyze complex datasets 
+            and contribute to data-driven decision-making effectively. I am committed to continuous learning and professional development in the field 
+            of Data Science & AI.
+        </p>
+    </section>
+
+    <section id="education">
+        <h2>Education</h2>
+        <ul>
+            <li><b>Bachelor of Technology (B.Tech) - Mechanical Engineering</b> (Oct 2020 - May 2024)<br>
+                B S Abdur Rahman Crescent Institute of Science & Technology, Vandalur, Chennai-600048.<br>
+                Class Obtained: First Class with Distinction
+            </li>
+            <br>
+            <li><b>Certified Data Scientist – Data Science</b> (Aug 2024 - Jan 2025)<br>
+                DataMites Global Training Institute
+            </li>
+        </ul>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-icons">
+            <div><i class="fas fa-brain"></i> Machine Learning</div>
+            <div><i class="fas fa-project-diagram"></i> Deep Learning</div>
+            <div><i class="fas fa-comment-dots"></i> NLP</div>
+            <div><i class="fas fa-robot"></i> LLMs</div>
+            <div><i class="fas fa-calculator"></i> Statistics</div>
+            <div><i class="fab fa-python"></i> Python</div>
+            <div><i class="fas fa-database"></i> MySQL</div>
+            <div><i class="fab fa-git"></i> Git</div>
+            <div><i class="fab fa-github"></i> GitHub</div>
+            <div><i class="fab fa-aws"></i> AWS</div>
+            <div><i class="fas fa-table"></i> Excel</div>
+            <div><i class="fas fa-chart-bar"></i> Tableau</div>
+            <div><i class="fab fa-microsoft"></i> Power BI</div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2>Experience</h2>
+        <ul>
+            <li><b>Data Science Consultant Intern</b> at Rubixe - AI Solutions, Remote (Aug 2024 - Present).<br>
+                Currently engaged in multiple projects applying skills in Statistics, Python, Machine Learning, Deep Learning, and Data Visualization. This hands-on experience allows me to analyze complex datasets and contribute to data-driven decision-making effectively. 
+            </li>
+            <br>
+            <li><b>Intern</b> at Chennai Forge Products Pvt. Ltd., Chennai (Jun 2023 - Jul 2023).<br>
+                Worked in the Production & Quality Inspection department, where tasks included machining operations, quality inspection, data collection, and report making. Developed skills in drilling, surface grinding, quality inspection, and machine operations.
+            </li>
+        </ul>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+
+        <div class="project">
+            <h3>RAG Chatbot with Flowise AI, GPT-4o Mini and Vectara (Mar 2025)</h3>
+            <p style="color:#d0eaff;">
+                Developed a Retrieval-Augmented Generation (RAG) chatbot using Flowise AI for workflow orchestration, GPT-4o Mini as the generative language model, and Vectara for efficient vector storage and semantic search. Designed to process user-uploaded PDF files, the system extracts text, converts it into vector embeddings via Vectara, and retrieves contextually relevant data to generate accurate, context-aware responses using GPT-4o Mini. By prioritizing PDFs as the knowledge source, the chatbot enables structured document analysis for industries reliant on static documents (e.g., legal, academic). Ideal for knowledge management, research, or customer support, it transforms static data into dynamic conversational experiences.
+                <br>
+                <a class="project-link" href="https://github.com/SPV-413/RAG-Chatbot.git" target="_blank">GitHub Link</a>
+            </p>
+        </div>
+
+        <div class="project">
+            <h3>Multilingual Translator Chatbot with Flowise AI and GPT-4o Mini (Feb 2025)</h3>
+            <p style="color:#d0eaff;">
+                Developed a multilingual translator chatbot utilizing GPT-4o Mini and Flowise AI, capable of translating between English and various languages such as Tamil, Hindi, French, German and more. The chatbot allows users to customize translations for specific language pairs, enhancing its versatility. Designed to facilitate seamless communication across different languages, this user-friendly system integrates the advanced capabilities of GPT-4o Mini with Flowise AI's intuitive interface. This makes it an invaluable tool for global teams, travelers or anyone who require quick and efficient translations, ultimately breaking down language barriers and improving accessibility in communication.
+                <br>
+                <a class="project-link" href="https://github.com/SPV-413/Multilingual-Translator-Chatbot.git" target="_blank">GitHub Link</a>
+            </p>
+        </div>
+
+        <div class="project">
+            <h3>DeepSeek-R1 Local AI Chatbot with Flowise AI & Ollama (Jan 2025 - Feb 2025)</h3>
+            <p style="color:#d0eaff;">
+                Developed a local AI chatbot using Flowise AI and the Ollama framework with the DeepSeek-R1 model, ensuring data privacy and customization for specific needs. This setup enables powerful conversational AI capabilities. Integrated advanced natural language understanding and generation through DeepSeek-R1, allowing the chatbot to handle complex queries and deliver accurate, context-aware responses. Flowise's user-friendly interface simplifies workflow design and management. Making it accessible for developers and enhancing overall user experience.
+                <br>
+                <a class="project-link" href="https://github.com/SPV-413/Deepseek-R1-Local-AI-Chatbot.git" target="_blank">GitHub Link</a>
+            </p>
+        </div>
+
+        <div class="project">
+            <h3>NLP-Driven Twitter Sentiment Analysis and SMS Spam Detection (Nov 2024)</h3>
+            <p style="color:#d0eaff;">
+                Built two models:
+                <ul>
+                    <li>Implemented SMS spam detection using the Naive Bayes algorithm, achieving an impressive accuracy of 98%. This model effectively classifies messages into spam or ham categories by calculating the probability of words in the messages, ensuring reliable filtering of unwanted content.</li>
+                    <li>Implemented Twitter sentiment analysis using the Random Forest algorithm, achieving an accuracy of 88%. This analysis categorizes tweets into four sentiments: Negative, Positive, Neutral and Irrelevant, providing valuable insights into public opinion and enhancing understanding of social media dynamics.</li>
+                </ul>
+                <a class="project-link" href="https://github.com/SPV-413/SMS-Spam-Detection.git" target="_blank">GitHub Link</a>
+            </p>
+        </div>
+
+        <div class="project">
+            <h3>Fault Diagnosis of Bucket Elevator-Drive Pulley Using Machine Learning (Jan 2024 - May 2024)</h3>
+            <p style="color:#d0eaff;">
+                Fabricated drive pulleys with artificial wear faults (pulley shaft wear and outer layer wear) and collected data under three conditions: good, pulley shaft wear, and outer layer wear using an accelerometer sensor. Extracted statistical features from the data and utilized MATLAB's Machine Learning and Deep Learning Toolbox to test Decision Tree, Artificial Neural Network, and Support Vector Machine (SVM) algorithms. The SVM algorithm achieved the highest accuracy of 94%, aiding in the prevention of unscheduled maintenance and breakdowns in industrial settings.
+                <br>
+                <a class="project-link" href="https://github.com/SPV-413/Fault-Diagnosis-Bucket-Elevator.git" target="_blank">GitHub Link</a>
+            </p>
+        </div>
+
+    </section>
+
+    <section id="certifications">
+        <h2>Certifications</h2>
+        <ul>
+            <li>Certified Data Scientist - IABAC</li>
+            <li>Certified Data Scientist - DataMites</li>
+            <li>Data Science Foundation - IABAC</li>
+            <li>Python Fundamentals for Beginners - Great Learning</li>
+            <li>Data Analysis using Excel - Great Learning</li>
+            <li>Generative AI Fundamentals - DataBricks</li>
+            <li>Council of Europe Level A2 - Cambridge</li>
+            <li>Machine Learning with Python - Cognitive Class AI & IBM</li>
+            <li>Lloyds Banking Group’s Data Science Job Simulation - Forage</li>
+        </ul>
+    </section>
+    <section id="resume">
+    <h2>Resume</h2>
+    <p>
+        <a href="https://drive.google.com/file/d/1_eHh56Kh4sLEYgnvB9iNm6IjTk8jz8Yl/view?usp=drivesdk" target="_blank" class="project-link">
+            <i class="fas fa-file-pdf"></i> View My Resume
+        </a>
+    </p>
+</section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p style="color:#d0eaff;"><a href="mailto:peraisoodanviswanath.s@gmail.com" style="color:#00ffe7;">
+    <i class="fas fa-envelope"></i> Email
+  </a>
+</p>
+<p style="color:#d0eaff;"><a href="https://www.linkedin.com/in/peraisoodan-viswanath-s" target="_blank" style="color:#007bff;">
+    <i class="fab fa-linkedin"></i> LinkedIn
+  </a>
+</p>
+<p style="color:#d0eaff;"><a href="https://github.com/SPV-413" target="_blank" style="color:#ffffff;">
+    <i class="fab fa-github"></i> GitHub 
+  </a>
+</p>
+<p style="color:#d0eaff;"><a href="tel:+919500059621" style="color:#a0f070;">
+    <i class="fas fa-mobile-alt"></i> Mobile
+  </a>
+</p>
+    </section>
+
+    <footer>
+        </p>Copyright © 2025 Peraisoodan Viswanath S. All rights reserved. </p>
+    </footer>
+</body>
+</html>
