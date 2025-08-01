@@ -1,463 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+<head> 
+    <meta charset="UTF-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peraisoodan Viswanath S - Portfolio</title>
+    <title>SPV Portfolio</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        * {
+        /* Space Background and Stars */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-            background: #000;
-            color: #fff;
-        }
-
-        /* Animated Background */
-        .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(45deg, #0a0a0a, #1a1a2e, #16213e, #0f0f23);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-        }
-
-        .background::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-                        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-30px) rotate(2deg); }
-            66% { transform: translateY(15px) rotate(-1deg); }
-        }
-
-        /* Floating Particles */
-        .particles {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: particleFloat 20s infinite linear;
-        }
-
-        @keyframes particleFloat {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
-        }
-
-        /* Header */
-        header {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .profile-container {
-            position: relative;
-            margin-bottom: 2rem;
-        }
-
-        .profile-img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            object-position: center top;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
-            transition: all 0.3s ease;
-            animation: profileGlow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes profileGlow {
-            0% { box-shadow: 0 0 30px rgba(0, 255, 255, 0.5); }
-            100% { box-shadow: 0 0 50px rgba(255, 0, 255, 0.7); }
-        }
-
-        .profile-img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 60px rgba(255, 255, 255, 0.8);
-        }
-
-        .title-container h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: textGradient 3s ease infinite;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-        }
-
-        @keyframes textGradient {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .subtitle {
-            font-size: 1.5rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease-out 0.5s both;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 50%;
-            right: 30px;
-            transform: translateY(-50%);
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 25px;
-            padding: 1rem 0;
-        }
-
-        nav a {
-            display: block;
-            padding: 1rem 1.5rem;
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border-radius: 20px;
-            margin: 0.2rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        nav a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        nav a:hover::before {
-            left: 100%;
-        }
-
-        nav a:hover {
-            color: #00ffff;
-            background: rgba(0, 255, 255, 0.1);
-            transform: translateX(-5px);
-        }
-
-        /* Sections */
-        section {
             min-height: 100vh;
-            padding: 5rem 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            overflow-x: hidden;
             position: relative;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 3rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        h2 {
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            border-radius: 2px;
-        }
-
-        /* Cards */
-        .card {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 1rem 0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.8s;
-        }
-
-        .card:hover::before {
-            left: 100%;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
-            border-color: rgba(0, 255, 255, 0.3);
-        }
-
-        /* Skills Grid */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .skill-item {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .skill-item:hover {
-            background: rgba(0, 255, 255, 0.1);
-            transform: scale(1.05);
-        }
-
-        .skill-item i {
-            font-size: 2.5rem;
-            color: #00ffff;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        /* Projects */
-        .project {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
-            border-left: 4px solid #00ffff;
-            transition: all 0.3s ease;
-        }
-
-        .project:hover {
-            transform: translateX(10px);
-            box-shadow: -10px 10px 30px rgba(0, 255, 255, 0.2);
-        }
-
-        .project h3 {
-            color: #00ffff;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .project-link {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.8rem 2rem;
-            background: linear-gradient(45deg, #00ffff, #ff00ff);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            font-weight: bold;
-        }
-
-        .project-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.3);
-        }
-
-        /* Contact */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .contact-item {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .contact-item:hover {
-            background: rgba(0, 255, 255, 0.1);
-            transform: translateY(-5px);
-        }
-
-        .contact-item i {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #00ffff;
-        }
-
-        .contact-item a {
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-item a:hover {
-            color: #00ffff;
-        }
-
-        /* Scroll to top button */
-        .scroll-top {
+        /* Star animation */
+        .stars, .stars2, .stars3 {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(45deg, #00ffff, #ff00ff);
-            border-radius: 50%;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .stars {
+            background: transparent url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/img/stars.png') repeat top center;
+            animation: moveStars 200s linear infinite;
+            opacity: 0.5;
+        }
+        .stars2 {
+            background: transparent url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/img/stars2.png') repeat top center;
+            animation: moveStars 400s linear infinite;
+            opacity: 0.3;
+        }
+        .stars3 {
+            background: transparent url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/img/stars3.png') repeat top center;
+            animation: moveStars 600s linear infinite;
+            opacity: 0.2;
+        }
+        @keyframes moveStars {
+            from {background-position: 0 0;}
+            to {background-position: 10000px 10000px;}
+        }
+
+        header {
+            background: rgba(30, 30, 60, 0.95);
+            color: #fff;
+            padding: 2rem 0 1rem 0;
+            text-align: center;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.5);
+            border-bottom: 1px solid #2e3a4e;
+            z-index: 1;
+            position: relative;
+        }
+        nav {
+            background: rgba(44, 62, 80, 0.95);
+            text-align: center;
+            padding: 0.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3);
+        }
+        nav a {
+            color: #fff;
+            margin: 0 1.2rem;
+            text-decoration: none;
+            font-weight: bold;
+            text-shadow: 0 0 8px #00ffea80;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: #00ffe7;
+        }
+        section {
+            padding: 2rem;
+            background: rgba(20, 24, 38, 0.95);
+            margin: 2rem auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 32px 0 #00ffe733, 0 1.5px 8px 0 #000a;
+            max-width: 900px;
+            position: relative;
+            z-index: 1;
+        }
+        h2 {
+            color: #00ffe7;
+            text-shadow: 0 0 8px #00ffe7bb;
+            margin-top: 0;
+        }
+        h3 {
+            color: #fff;
+            margin-bottom: 0.6rem;
+            text-shadow: 0 0 8px #00ffe7bb;
+        }
+        ul {
+            list-style-type: square;
+            margin-left: 24px;
+            color: #d0eaff;
+        }
+        .project {
+            margin-bottom: 2.5rem;
+            background: rgba(34, 49, 63, 0.7);
+            border-radius: 10px;
+            padding: 1.2rem 1rem;
+            box-shadow: 0 2px 12px 0 #00ffe722;
+        }
+        footer {
+            background: rgba(30, 30, 60, 0.95);
+            color: #fff;
+            text-align: center;
+            padding: 1.2rem 0;
+            margin-top: 2rem;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border-top: 1px solid #2e3a4e;
+            z-index: 1;
+            position: relative;
+        }
+        a.project-link {
+            color: #00ffe7;
+            font-weight: bold;
+            text-shadow: 0 0 6px #00ffe7bb;
+        }
+        a.project-link:hover {
+            text-decoration: underline;
+            color: #fff;
+        }
+        .skills-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+        .skills-icons div {
             display: flex;
             align-items: center;
-            justify-content: center;
+            gap: 0.5rem;
+            background: rgba(44, 62, 80, 0.7);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
             color: #fff;
-            text-decoration: none;
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 1000;
+            box-shadow: 0 1px 6px #00ffe722;
         }
-
-        .scroll-top.visible {
-            opacity: 1;
+        .skills-icons i {
+            font-size: 1.5rem;
+            color: #00ffe7;
+            text-shadow: 0 0 8px #00ffe7bb;
         }
-
-        .scroll-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.3);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .title-container h1 {
-                font-size: 2.5rem;
-            }
-            
-            nav {
-                display: none;
-            }
-            
+        @media (max-width: 700px) {
             section {
-                padding: 3rem 1rem;
+                padding: 1rem;
+                margin: 1rem;
             }
-            
-            .container {
-                padding: 2rem;
-            }
-            
-            h2 {
-                font-size: 2rem;
+            .skills-icons {
+                gap: 0.5rem;
             }
         }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.1);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, #00ffff, #ff00ff);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(45deg, #ff00ff, #00ffff);
+        @media (max-width: 500px) {
+            header {
+                font-size: 1.1rem;
+                padding: 1.2rem 0 0.5rem 0;
+            }
+            nav {
+                font-size: 0.95rem;
+            }
+            section {
+                padding: 0.7rem;
+                margin: 0.5rem;
+            }
+            .skills-icons {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="background"></div>
-    <div class="particles" id="particles"></div>
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
 
     <header>
-        <div class="profile-container">
-            <img src="profile.jpg" alt="Profile Picture" class="profile-img" />
-        </div>
-        <div class="title-container">
-            <h1>Peraisoodan Viswanath S</h1>
-            <p class="subtitle">Aspiring Data Scientist | AI/ML Engineer</p>
-        </div>
+        <div style="text-align: center; margin-top: 30px;">
+  <img src="profile.jpg" alt="Profile Picture" class="profile-img"
+       style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover; object-position: center top; border: 3px solid #e1e4e8;" />
+</div>
+
+        <h1>Peraisoodan Viswanath S - Aspiring Data Scientist | AI/ML Engineer</h1>
     </header>
 
     <nav>
@@ -467,250 +201,165 @@
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#certifications">Certifications</a>
-        <a href="#resume">Resume</a>
         <a href="#contact">Contact</a>
     </nav>
 
     <section id="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <div class="card">
-                <p>
-                    Innovative data enthusiast with a Certified Data Scientist credential from DataMites Global Institute and hands-on experience as a Data Science Consultant Intern at Rubixe. Proficient in Data Wrangling, Statistical Analysis, Machine Learning, Deep Learning, NLP, LLMs, Python, MySQL, PySpark, Git, AWS, and data visualization using tools like Tableau, and Power BI. Demonstrated ability to deliver actionable insights through multiple Proof of Concept (POC) projects and client assignments. Passionate about leveraging data-driven solutions to solve complex business problems and drive innovation.
-                </p>
-            </div>
-        </div>
+        <h2>About Me</h2>
+        <p style="color:#d0eaff;">
+            Innovative data enthusiast with a Certified Data Scientist credential from DataMites Global Institute and hands-on experience as a Data Science Consultant Intern at Rubixe. Proficient in Data Wrangling, Statistical Analysis, Machine Learning, Deep Learning, NLP, LLMs, Python, MySQL, PySpark, Git, AWS, and data visualization using tools like Tableau, and Power BI. Demonstrated ability to deliver actionable insights through multiple Proof of Concept (POC) projects and client assignments. Passionate about leveraging data-driven solutions to solve complex business problems and drive innovation.
+        </p>
     </section>
 
     <section id="education">
-        <div class="container">
-            <h2>Education</h2>
-            <div class="card">
-                <h3><i class="fas fa-graduation-cap"></i> Bachelor of Technology (B.Tech) - Mechanical Engineering</h3>
-                <p><strong>Duration:</strong> Oct 2020 - May 2024</p>
-                <p><strong>Institution:</strong> B S Abdur Rahman Crescent Institute of Science & Technology</p>
-                <p><strong>CGPA:</strong> 9.14/10 | First Class with Distinction</p>
-            </div>
-            <div class="card">
-                <h3><i class="fas fa-certificate"></i> Certified Data Scientist - Data Science</h3>
-                <p><strong>Duration:</strong> Aug 2024 - Jan 2025</p>
-                <p><strong>Institution:</strong> DataMites Global Institute for Data Science</p>
-            </div>
-        </div>
+        <h2>Education</h2>
+        <ul>
+            <li><b>Bachelor of Technology (B.Tech) - Mechanical Engineering</b> (Oct 2020 - May 2024)<br>
+                B S Abdur Rahman Crescent Institute of Science & Technology<br>
+                CGPA: 9.14/10 | First Class with Distinction
+            </li>
+            <br>
+            <li><b>Certified Data Scientist - Data Science</b> (Aug 2024 - Jan 2025)<br>
+                DataMites Global Institute for Data Science
+            </li>
+        </ul>
     </section>
 
     <section id="skills">
-        <div class="container">
-            <h2>Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-item">
-                    <i class="fas fa-brain"></i>
-                    <span>Machine Learning</span>
-                </div>
-                <div class="skill-item">
-                    <i class="fas fa-project-diagram"></i>
-                    <span>Deep Learning</span>
-                </div>
-                <div class="skill-item">
-                    <i class="fas fa-comment-dots"></i>
-                    <span>NLP</span>
-                </div>
-                <div class="skill-item">
-                    <i class="fas fa-robot"></i>
-                    <span>LLMs</span>
-                </div>
-                <div class="skill-item">
-                    <i class="fas fa-calculator"></i>
-                    <span>Statistics</span>
-                </div>
-                <div class="skill-item">
-                    <i class="fab fa-python"></i>
-                    <span>Python</span>
-                </div>
-                <div class="skill-item">
-                    <i class="fas fa-database"></i>
-                    <span>MySQL</span>
-                </div>
-                <div class="skill-item">
-                    <i class="fab fa-git"></i>
-                    <span>Git</span>
-                </div>
-                <div class="skill-item">
-                    <i class="fab fa-github"></i>
-                    <span>GitHub</span>
-                </div>
-                <div class="skill-item">
-                    <i class="fab fa-aws"></i>
-                    <span>AWS</span>
-                </div>
-                <div class="skill-item">
-                    <i class="fas fa-table"></i>
-                    <span>Excel</span>
-                </div>
-                <div class="skill-item">
-                    <i class="fas fa-chart-bar"></i>
-                    <span>Tableau</span>
-                </div>
-                <div class="skill-item">
-                    <i class="fab fa-microsoft"></i>
-                    <span>Power BI</span>
-                </div>
-            </div>
+        <h2>Skills</h2>
+        <div class="skills-icons">
+            <div><i class="fas fa-brain"></i> Machine Learning</div>
+            <div><i class="fas fa-project-diagram"></i> Deep Learning</div>
+            <div><i class="fas fa-comment-dots"></i> NLP</div>
+            <div><i class="fas fa-robot"></i> LLMs</div>
+            <div><i class="fas fa-calculator"></i> Statistics</div>
+            <div><i class="fab fa-python"></i> Python</div>
+            <div><i class="fas fa-database"></i> MySQL</div>
+            <div><i class="fab fa-git"></i> Git</div>
+            <div><i class="fab fa-github"></i> GitHub</div>
+            <div><i class="fab fa-aws"></i> AWS</div>
+            <div><i class="fas fa-table"></i> Excel</div>
+            <div><i class="fas fa-chart-bar"></i> Tableau</div>
+            <div><i class="fab fa-microsoft"></i> Power BI</div>
         </div>
     </section>
 
     <section id="experience">
-        <div class="container">
-            <h2>Experience</h2>
-            <div class="card">
-                <h3><i class="fas fa-briefcase"></i> Data Science Consultant Intern</h3>
-                <p><strong>Company:</strong> Rubixe - AI Solutions, Remote</p>
-                <p><strong>Duration:</strong> Nov 2024 - May 2025</p>
-                <p>Applied advanced data science techniques to real-world projects, including multiple Proof of Concept (POC) and client assignments. Throughout the internship, I honed skills in Data Wrangling, Statistical Analysis, Machine Learning, Deep Learning, Model Evaluation, Python, MySQL, and data visualization using tools like Tableau, and Power BI. My dedication and practical approach earned recognition from both teams and clients, enabling me to deliver impactful, data-driven solutions.</p>
-            </div>
-            <div class="card">
-                <h3><i class="fas fa-industry"></i> Intern</h3>
-                <p><strong>Company:</strong> Chennai Forge Products Pvt. Ltd., Chennai</p>
-                <p><strong>Duration:</strong> Jun 2023 - Jul 2023</p>
-                <p>As a member of the Production & Quality Inspection department, I was responsible for machining operations, quality inspections, data collection, and report preparation for various components. This challenging role allowed me to develop hands-on skills in machining processes such as drilling and surface grinding, as well as quality inspection techniques. I gained valuable knowledge about different machines, inspection instruments, and the manufacturing processes and applications of a wide range of components.</p>
-            </div>
-        </div>
+        <h2>Experience</h2>
+        <ul>
+            <li><b>Data Science Consultant Intern</b> at Rubixe - AI Solutions, Remote (Nov 2024 - May 2025).<br>
+                Applied advanced data science techniques to real-world projects, including multiple Proof of Concept (POC) and client assignments. Throughout the internship, I honed skills in Data Wrangling, Statistical Analysis, Machine Learning, Deep Learning, Model Evaluation, Python, MySQL, and data visualization using tools like Tableau, and Power BI. My dedication and practical approach earned recognition from both teams and clients, enabling me to deliver impactful, data-driven solutions. 
+            </li>
+            <br>
+            <li><b>Intern</b> at Chennai Forge Products Pvt. Ltd., Chennai (Jun 2023 - Jul 2023).<br>
+                As a member of the Production & Quality Inspection department, I was responsible for machining operations, quality inspections, data collection, and report preparation for various components. This challenging role allowed me to develop hands-on skills in machining processes such as drilling and surface grinding, as well as quality inspection techniques. I gained valuable knowledge about different machines, inspection instruments, and the manufacturing processes and applications of a wide range of components.
+        </ul>
     </section>
 
     <section id="projects">
-        <div class="container">
-            <h2>Projects</h2>
-            
-            <div class="project">
-                <h3>AutoViz Dashboard App: Visualize Data Effortlessly (Jun 2025)</h3>
-                <p>
-                    AutoViz Dashboard is an advanced interactive data visualization app built with Streamlit and Plotly that transforms raw CSV, Excel, or JSON data into dynamic, professional dashboards. The application intelligently caches data to ensure rapid processing and performs automated data cleaning, allowing users to focus on extracting actionable insights. It offers a robust suite of charts-including histograms, line charts, bar charts, bubble charts, scatter plots, hexbin plots, treemaps, crosstab tables, count plots, box plots, pie charts, donut charts, time series, geospatial maps, and more-along with interactive filters and real-time Key Performance Indicators (KPIs). It's an ideal solution for data analysts & scientists, business leaders, researchers, and innovators seeking to convert complex data into clear, strategic visual narratives.
-                </p>
-                <a class="project-link" href="https://autoviz-dashboard.streamlit.app/" target="_blank">
-                    <i class="fas fa-external-link-alt"></i> View App
-                </a>
-            </div>
+        <h2>Projects</h2>
 
-            <div class="project">
-                <h3>SmartML Pro App: End-to-End Machine Learning with AI Assistant (May 2025)</h3>
-                <p>
-                    SmartML Pro is a Streamlit-based end-to-end machine learning app for data science professionals, supporting classification and regression tasks with data input via MySQL or file upload. It features comprehensive EDA, data preprocessing and a variety of ML models for both classification and regression, Hyperparameter tuning and evaluation metrics. The app integrates an AI assistant powered by Azure OpenAI GPT-4.1 accessible from the sidebar for help and troubleshooting. It enables rapid prototyping, automated data cleaning, handling imbalanced data with SMOTE, and interactive AI support to accelerate workflows and improve model performance in business use cases.
-                </p>
-                <a class="project-link" href="https://smartml-pro.streamlit.app/" target="_blank">
-                    <i class="fas fa-external-link-alt"></i> View App
-                </a>
-            </div>
-
-            <div class="project">
-                <h3>RAG Chatbot with Flowise AI, GPT-4o Mini and Vectara (Mar 2025)</h3>
-                <p>
-                    Developed a Retrieval-Augmented Generation (RAG) chatbot using Flowise AI for workflow orchestration, GPT-4o Mini as the generative language model, and Vectara for efficient vector storage and semantic search. Designed to process user-uploaded PDF files, the system extracts text, converts it into vector embeddings via Vectara, and retrieves contextually relevant data to generate accurate, context-aware responses using GPT-4o Mini. By prioritizing PDFs as the knowledge source, the chatbot enables structured document analysis for industries reliant on static documents (e.g., legal, academic). Ideal for knowledge management, research, or customer support, it transforms static data into dynamic conversational experiences.
-                </p>
-                <a class="project-link" href="https://github.com/SPV-413/RAG-Chatbot.git" target="_blank">
-                    <i class="fab fa-github"></i> View Code
-                </a>
-            </div>
-
-            <div class="project">
-                <h3>Multilingual Translator Chatbot with Flowise AI and GPT-4o Mini (Feb 2025)</h3>
-                <p>
-                    Developed a multilingual translator chatbot utilizing GPT-4o Mini and Flowise AI, capable of translating between English and various languages such as Tamil, Hindi, French, German and more. The chatbot allows users to customize translations for specific language pairs, enhancing its versatility. Designed to facilitate seamless communication across different languages, this user-friendly system integrates the advanced capabilities of GPT-4o Mini with Flowise AI's intuitive interface. This makes it an invaluable tool for global teams, travelers or anyone who require quick and efficient translations, ultimately breaking down language barriers and improving accessibility in communication.
-                </p>
-                <a class="project-link" href="https://github.com/SPV-413/Multilingual-Translator-Chatbot.git" target="_blank">
-                    <i class="fab fa-github"></i> View Code
-                </a>
-            </div>
-
-            <div class="project">
-                <h3>DeepSeek-R1 Local AI Chatbot with Flowise AI & Ollama (Jan 2025)</h3>
-                <p>
-                    Developed a local AI chatbot using Flowise AI and the Ollama framework with the DeepSeek-R1 model, ensuring data privacy and customization for specific needs. This setup enables powerful conversational AI capabilities. Integrated advanced natural language understanding and generation through DeepSeek-R1, allowing the chatbot to handle complex queries and deliver accurate, context-aware responses. Flowise's user-friendly interface simplifies workflow design and management. Making it accessible for developers and enhancing overall user experience.
-                </p>
-                <a class="project-link" href="https://github.com/SPV-413/Deepseek-R1-Local-AI-Chatbot.git" target="_blank">
-                    <i class="fab fa-github"></i> View Code
-                </a>
-            </div>
-
-            <div class="project">
-                <h3>Fault Diagnosis of Bucket Elevator-Drive Pulley Using Machine Learning (Jan 2024 - May 2024)</h3>
-                <p>
-                    Fabricated drive pulleys with artificial wear faults (pulley shaft wear and outer layer wear) and collected data under three conditions: good, pulley shaft wear, and outer layer wear using an accelerometer sensor. Extracted statistical features from the data and utilized MATLAB's Machine Learning and Deep Learning Toolbox to test Decision Tree, Artificial Neural Network, and Support Vector Machine (SVM) algorithms. The SVM algorithm achieved the highest accuracy of 94%, aiding in the prevention of unscheduled maintenance and breakdowns in industrial settings.
-                </p>
-                <a class="project-link" href="https://github.com/SPV-413/Fault-Diagnosis-Bucket-Elevator.git" target="_blank">
-                    <i class="fab fa-github"></i> View Code
-                </a>
-            </div>
+        <div class="project">
+            <h3>AutoViz Dashboard App: Visualize Data Effortlessly (Jun 2025)</h3>
+            <p style="color:#d0eaff;">
+                AutoViz Dashboard is an advanced interactive data visualization app built with Streamlit and Plotly that transforms raw CSV, Excel, or JSON data into dynamic, professional dashboards. The application intelligently caches data to ensure rapid processing and performs automated data cleaning, allowing users to focus on extracting actionable insights. It offers a robust suite of charts-including histograms, line charts, bar charts, bubble charts, scatter plots, hexbin plots, treemaps, crosstab tables, count plots, box plots, pie charts, donut charts, time series, geospatial maps, and more-along with interactive filters and real-time Key Performance Indicators (KPIs). It's an ideal solution for data analysts & scientists, business leaders, researchers, and innovators seeking to convert complex data into clear, strategic visual narratives.
+                <br>
+                <a class="project-link" href="https://autoviz-dashboard.streamlit.app/" target="_blank">App Link</a>
+            </p>
         </div>
+        
+        <div class="project">
+            <h3>SmartML Pro App: End-to-End Machine Learning with AI Assistant (May 2025)</h3>
+            <p style="color:#d0eaff;">
+                SmartML Pro is a Streamlit-based end-to-end machine learning app for data science professionals, supporting classification and regression tasks with data input via MySQL or file upload. It features comprehensive EDA, data preprocessing and a variety of ML models for both classification and regression, Hyperparameter tuning and evaluation metrics. The app integrates an AI assistant powered by Azure OpenAI GPT-4.1 accessible from the sidebar for help and troubleshooting. It enables rapid prototyping, automated data cleaning, handling imbalanced data with SMOTE, and interactive AI support to accelerate workflows and improve model performance in business use cases.
+                <br>
+                <a class="project-link" href="https://smartml-pro.streamlit.app/" target="_blank">App Link</a>
+            </p>
+        </div>
+        
+        <div class="project">
+            <h3>RAG Chatbot with Flowise AI, GPT-4o Mini and Vectara (Mar 2025)</h3>
+            <p style="color:#d0eaff;">
+                Developed a Retrieval-Augmented Generation (RAG) chatbot using Flowise AI for workflow orchestration, GPT-4o Mini as the generative language model, and Vectara for efficient vector storage and semantic search. Designed to process user-uploaded PDF files, the system extracts text, converts it into vector embeddings via Vectara, and retrieves contextually relevant data to generate accurate, context-aware responses using GPT-4o Mini. By prioritizing PDFs as the knowledge source, the chatbot enables structured document analysis for industries reliant on static documents (e.g., legal, academic). Ideal for knowledge management, research, or customer support, it transforms static data into dynamic conversational experiences.
+                <br>
+                <a class="project-link" href="https://github.com/SPV-413/RAG-Chatbot.git" target="_blank">GitHub Link</a>
+            </p>
+        </div>
+
+        <div class="project">
+            <h3>Multilingual Translator Chatbot with Flowise AI and GPT-4o Mini (Feb 2025)</h3>
+            <p style="color:#d0eaff;">
+                Developed a multilingual translator chatbot utilizing GPT-4o Mini and Flowise AI, capable of translating between English and various languages such as Tamil, Hindi, French, German and more. The chatbot allows users to customize translations for specific language pairs, enhancing its versatility. Designed to facilitate seamless communication across different languages, this user-friendly system integrates the advanced capabilities of GPT-4o Mini with Flowise AI's intuitive interface. This makes it an invaluable tool for global teams, travelers or anyone who require quick and efficient translations, ultimately breaking down language barriers and improving accessibility in communication.
+                <br>
+                <a class="project-link" href="https://github.com/SPV-413/Multilingual-Translator-Chatbot.git" target="_blank">GitHub Link</a>
+            </p>
+        </div>
+
+        <div class="project">
+            <h3>DeepSeek-R1 Local AI Chatbot with Flowise AI & Ollama (Jan 2025)</h3>
+            <p style="color:#d0eaff;">
+                Developed a local AI chatbot using Flowise AI and the Ollama framework with the DeepSeek-R1 model, ensuring data privacy and customization for specific needs. This setup enables powerful conversational AI capabilities. Integrated advanced natural language understanding and generation through DeepSeek-R1, allowing the chatbot to handle complex queries and deliver accurate, context-aware responses. Flowise's user-friendly interface simplifies workflow design and management. Making it accessible for developers and enhancing overall user experience.
+                <br>
+                <a class="project-link" href="https://github.com/SPV-413/Deepseek-R1-Local-AI-Chatbot.git" target="_blank">GitHub Link</a>
+            </p>
+        </div>
+
+        <div class="project">
+            <h3>Fault Diagnosis of Bucket Elevator-Drive Pulley Using Machine Learning (Jan 2024 - May 2024)</h3>
+            <p style="color:#d0eaff;">
+                Fabricated drive pulleys with artificial wear faults (pulley shaft wear and outer layer wear) and collected data under three conditions: good, pulley shaft wear, and outer layer wear using an accelerometer sensor. Extracted statistical features from the data and utilized MATLAB's Machine Learning and Deep Learning Toolbox to test Decision Tree, Artificial Neural Network, and Support Vector Machine (SVM) algorithms. The SVM algorithm achieved the highest accuracy of 94%, aiding in the prevention of unscheduled maintenance and breakdowns in industrial settings.
+                <br>
+                <a class="project-link" href="https://github.com/SPV-413/Fault-Diagnosis-Bucket-Elevator.git" target="_blank">GitHub Link</a>
+            </p>
+        </div>
+
     </section>
 
     <section id="certifications">
-        <div class="container">
-            <h2>Certifications</h2>
-            <div class="skills-grid">
-                <div class="card">
-                    <i class="fas fa-certificate"></i>
-                    <h4>Certified Data Scientist - IABAC</h4>
-                </div>
-                <div class="card">
-                    <i class="fas fa-certificate"></i>
-                    <h4>Certified Data Scientist - DataMites</h4>
-                </div>
-                <div class="card">
-                    <i class="fas fa-certificate"></i>
-                    <h4>Data Science Foundation - IABAC</h4>
-                </div>
-                <div class="card">
-                    <i class="fab fa-python"></i>
-                    <h4>Python Fundamentals for Beginners - Great Learning</h4>
-                </div>
-                <div class="card">
-                    <i class="fas fa-table"></i>
-                    <h4>Data Analysis using Excel - Great Learning</h4>
-                </div>
-                <div class="card">
-                    <i class="fas fa-robot"></i>
-                    <h4>Generative AI Fundamentals - DataBricks</h4>
-                </div>
-                <div class="card">
-                    <i class="fas fa-language"></i>
-                    <h4>Council of Europe Level A2 - Cambridge</h4>
-                </div>
-                <div class="card">
-                    <i class="fas fa-brain"></i>
-                    <h4>Machine Learning with Python - Cognitive Class AI & IBM</h4>
-                </div>
-                <div class="card">
-                    <i class="fas fa-briefcase"></i>
-                    <h4>Lloyds Banking Group's Data Science Job Simulation - Forage</h4>
-                </div>
-            </div>
-        </div>
+        <h2>Certifications</h2>
+        <ul>
+            <li>Certified Data Scientist - IABAC</li>
+            <li>Certified Data Scientist - DataMites</li>
+            <li>Data Science Foundation - IABAC</li>
+            <li>Python Fundamentals for Beginners - Great Learning</li>
+            <li>Data Analysis using Excel - Great Learning</li>
+            <li>Generative AI Fundamentals - DataBricks</li>
+            <li>Council of Europe Level A2 - Cambridge</li>
+            <li>Machine Learning with Python - Cognitive Class AI & IBM</li>
+            <li>Lloyds Banking Group’s Data Science Job Simulation - Forage</li>
+        </ul>
     </section>
-
     <section id="resume">
-        <div class="container">
-            <h2>Resume</h2>
-            <div class="card" style="text-align: center;">
-                <i class="fas fa-file-pdf" style="font-size: 4rem; color: #00ffff; margin-bottom: 1rem;"></i>
-                <h3>Download My Resume</h3>
-                <p>Get a comprehensive overview of my experience, skills, and achievements.</p>
-                <a class="project-link" href="https://drive.google.com/file/d/1zSM5zNOLmALP6OO7nXf6FvxgZxtbKeIb/view?usp=drivesdk" target="_blank">
-                    <i class="fas fa-download"></i> View Resume
-                </a>
-            </div>
-        </div>
-    </section>
+    <h2>Resume</h2>
+    <p>
+        <a href="https://drive.google.com/file/d/1zSM5zNOLmALP6OO7nXf6FvxgZxtbKeIb/view?usp=drivesdk" target="_blank" class="project-link">
+            <i class="fas fa-file-pdf"></i> View My Resume
+        </a>
+    </p>
+</section>
 
     <section id="contact">
-        <div class="container">
-            <h2>Contact Me</h2>
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <h4>Email</h4>
-                    <a href="mailto:peraisoodanviswanath.s@gmail.com">peraisoodanviswanath.s@gmail.com</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-linkedin"></i>
-                    <h4>LinkedIn</h4>
-                    <a href
+        <h2>Contact</h2>
+        <p style="color:#d0eaff;"><a href="mailto:peraisoodanviswanath.s@gmail.com" style="color:#00ffe7;">
+    <i class="fas fa-envelope"></i> Email
+  </a>
+</p>
+<p style="color:#d0eaff;"><a href="https://www.linkedin.com/in/peraisoodan-viswanath-s" target="_blank" style="color:#007bff;">
+    <i class="fab fa-linkedin"></i> LinkedIn
+  </a>
+</p>
+<p style="color:#d0eaff;"><a href="https://github.com/SPV-413" target="_blank" style="color:#ffffff;">
+    <i class="fab fa-github"></i> GitHub 
+  </a>
+</p>
+<p style="color:#d0eaff;"><a href="tel:+919500059621" style="color:#a0f070;">
+    <i class="fas fa-mobile-alt"></i> Mobile
+  </a>
+</p>
+    </section>
+
+    <footer>
+     </p> © 2025 Peraisoodan Viswanath S. All rights reserved. </p>
+    </footer>
+</body>
+</html>
