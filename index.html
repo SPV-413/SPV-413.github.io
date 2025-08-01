@@ -1,78 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Peraisoodan Viswanath S | Data Scientist & AI/ML Engineer</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <style>
+        /* Reset and base */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            color: white;
         }
-
         /* Animated Background */
         .bg-animation {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             z-index: -1;
             background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
         }
-
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* Floating Particles */
+        /* Particles container */
         .particles {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            overflow: visible;
             z-index: -1;
+            pointer-events: none;
         }
 
+        /* Particle styling */
         .particle {
             position: absolute;
             background: rgba(255, 255, 255, 0.8);
             border-radius: 50%;
             animation: float 6s ease-in-out infinite;
+            will-change: transform, opacity;
+            /* Use CSS variable for mouse offset */
+            --mouseX: 0px;
+            --mouseY: 0px;
+            transform: translate(var(--mouseX), var(--mouseY)) translateY(100vh) rotate(0deg);
+            animation-fill-mode: forwards;
         }
 
-        .particle:nth-child(1) { width: 4px; height: 4px; left: 10%; animation-delay: 0s; }
-        .particle:nth-child(2) { width: 6px; height: 6px; left: 20%; animation-delay: 1s; }
-        .particle:nth-child(3) { width: 3px; height: 3px; left: 30%; animation-delay: 2s; }
-        .particle:nth-child(4) { width: 5px; height: 5px; left: 40%; animation-delay: 3s; }
-        .particle:nth-child(5) { width: 4px; height: 4px; left: 50%; animation-delay: 4s; }
-        .particle:nth-child(6) { width: 7px; height: 7px; left: 60%; animation-delay: 5s; }
-        .particle:nth-child(7) { width: 3px; height: 3px; left: 70%; animation-delay: 0.5s; }
-        .particle:nth-child(8) { width: 5px; height: 5px; left: 80%; animation-delay: 1.5s; }
-        .particle:nth-child(9) { width: 4px; height: 4px; left: 90%; animation-delay: 2.5s; }
-        .particle:nth-child(10) { width: 6px; height: 6px; left: 15%; animation-delay: 3.5s; }
-
+        /* The float keyframe only changes translateY and rotation */
         @keyframes float {
-            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+            0% {
+                transform: translate(var(--mouseX), var(--mouseY)) translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--mouseX), var(--mouseY)) translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         /* Header Styles */
@@ -85,15 +88,17 @@
             text-align: center;
             background: rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
+            overflow: hidden;
+            /* Reset parallax transform on scroll for stability and smoothness */
+            transform: translateY(0);
+            transition: transform 0.2s ease-out;
         }
 
         .hero-content {
             z-index: 1;
-            color: white;
             max-width: 800px;
             padding: 2rem;
         }
-
         .profile-image {
             width: 200px;
             height: 200px;
@@ -103,28 +108,26 @@
             animation: profilePulse 3s ease-in-out infinite;
             object-fit: cover;
             object-position: center top;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
         }
-
         @keyframes profilePulse {
             0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
             50% { transform: scale(1.05); box-shadow: 0 0 40px rgba(255, 255, 255, 0.8); }
         }
-
         .hero-title {
             font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             animation: titleSlide 1s ease-out;
+            user-select: none;
         }
-
         .hero-subtitle {
             font-size: 1.8rem;
             margin-bottom: 2rem;
             opacity: 0.9;
             animation: subtitleSlide 1s ease-out 0.5s both;
         }
-
         .hero-description {
             font-size: 1.2rem;
             line-height: 1.6;
@@ -132,22 +135,18 @@
             opacity: 0.8;
             animation: descriptionFade 1s ease-out 1s both;
         }
-
         @keyframes titleSlide {
             from { transform: translateY(-50px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-
         @keyframes subtitleSlide {
             from { transform: translateY(-30px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-
         @keyframes descriptionFade {
             from { opacity: 0; }
             to { opacity: 0.8; }
         }
-
         .cta-buttons {
             display: flex;
             gap: 1rem;
@@ -155,7 +154,6 @@
             flex-wrap: wrap;
             animation: buttonsFade 1s ease-out 1.5s both;
         }
-
         .btn {
             padding: 12px 30px;
             border: none;
@@ -168,48 +166,41 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
+            user-select: none;
         }
-
         .btn-primary {
             background: linear-gradient(45deg, #ff6b6b, #ee5a52);
             color: white;
             box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
         }
-
         .btn-secondary {
             background: rgba(255, 255, 255, 0.2);
             color: white;
             border: 2px solid rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
         }
-
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
-
         /* Navigation */
         nav {
             position: fixed;
             top: 0;
-            left: 0;
-            right: 0;
+            left: 0; right: 0;
             z-index: 1000;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             padding: 1rem 0;
             transition: all 0.3s ease;
         }
-
         nav.scrolled {
             background: rgba(255, 255, 255, 0.95);
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
-
         nav.scrolled a {
             color: #333;
         }
-
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -218,32 +209,29 @@
             align-items: center;
             padding: 0 2rem;
         }
-
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
             color: white;
             text-decoration: none;
+            user-select: none;
         }
-
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
         }
-
         .nav-links a {
             color: white;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
             position: relative;
+            user-select: none;
         }
-
         .nav-links a:hover {
             color: #ff6b6b;
         }
-
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -254,7 +242,6 @@
             background: #ff6b6b;
             transition: width 0.3s ease;
         }
-
         .nav-links a:hover::after {
             width: 100%;
         }
@@ -264,13 +251,11 @@
             padding: 5rem 0;
             position: relative;
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
         }
-
         .section-title {
             text-align: center;
             font-size: 3rem;
@@ -278,8 +263,8 @@
             margin-bottom: 3rem;
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            user-select: none;
         }
-
         /* About Section */
         .about-content {
             display: grid;
@@ -287,7 +272,6 @@
             gap: 4rem;
             align-items: center;
         }
-
         .about-text {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -306,7 +290,6 @@
             gap: 2rem;
             margin-top: 3rem;
         }
-
         .skill-category {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -315,12 +298,10 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
         }
-
         .skill-category:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
-
         .skill-category h3 {
             color: white;
             font-size: 1.5rem;
@@ -329,13 +310,11 @@
             align-items: center;
             gap: 10px;
         }
-
         .skill-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
         }
-
         .skill-tag {
             background: rgba(255, 255, 255, 0.2);
             color: white;
@@ -344,8 +323,9 @@
             font-size: 0.9rem;
             font-weight: 500;
             transition: all 0.3s ease;
+            cursor: default;
+            user-select: none;
         }
-
         .skill-tag:hover {
             background: rgba(255, 107, 107, 0.8);
             transform: scale(1.05);
@@ -356,7 +336,6 @@
             position: relative;
             padding-left: 2rem;
         }
-
         .experience-timeline::before {
             content: '';
             position: absolute;
@@ -366,7 +345,6 @@
             width: 2px;
             background: linear-gradient(to bottom, #ff6b6b, #ee5a52);
         }
-
         .experience-item {
             position: relative;
             margin-bottom: 3rem;
@@ -377,7 +355,6 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             margin-left: 2rem;
         }
-
         .experience-item::before {
             content: '';
             position: absolute;
@@ -389,25 +366,21 @@
             border-radius: 50%;
             border: 3px solid white;
         }
-
         .experience-item h3 {
             color: white;
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
         }
-
         .experience-item .company {
             color: #ff6b6b;
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
-
         .experience-item .duration {
             color: rgba(255, 255, 255, 0.7);
             font-size: 0.9rem;
             margin-bottom: 1rem;
         }
-
         .experience-item p {
             color: rgba(255, 255, 255, 0.9);
             line-height: 1.6;
@@ -420,7 +393,6 @@
             gap: 2rem;
             margin-top: 3rem;
         }
-
         .project-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -431,29 +403,24 @@
             position: relative;
             overflow: hidden;
         }
-
         .project-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
-
         .project-card h3 {
             color: white;
             font-size: 1.3rem;
             margin-bottom: 1rem;
         }
-
         .project-card p {
             color: rgba(255, 255, 255, 0.9);
             line-height: 1.6;
             margin-bottom: 1.5rem;
         }
-
         .project-links {
             display: flex;
             gap: 1rem;
         }
-
         .project-link {
             display: inline-flex;
             align-items: center;
@@ -463,7 +430,6 @@
             font-weight: 600;
             transition: all 0.3s ease;
         }
-
         .project-link:hover {
             color: white;
             transform: translateX(5px);
@@ -478,14 +444,12 @@
             padding: 4rem;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-
         .contact-info {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
-
         .contact-item {
             display: flex;
             flex-direction: column;
@@ -495,25 +459,25 @@
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             transition: all 0.3s ease;
+            cursor: default;
+            user-select: none;
         }
-
         .contact-item:hover {
             transform: translateY(-5px);
             background: rgba(255, 107, 107, 0.2);
         }
-
         .contact-item i {
             font-size: 2rem;
             color: #ff6b6b;
         }
-
         .contact-item a {
             color: white;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
+            cursor: pointer;
+            user-select: text;
         }
-
         .contact-item a:hover {
             color: #ff6b6b;
         }
@@ -525,6 +489,7 @@
             text-align: center;
             padding: 2rem 0;
             backdrop-filter: blur(10px);
+            user-select: none;
         }
 
         /* Mobile Responsiveness */
@@ -532,33 +497,26 @@
             .hero-title {
                 font-size: 2.5rem;
             }
-
             .hero-subtitle {
                 font-size: 1.4rem;
             }
-
             .nav-links {
                 display: none;
             }
-
             .about-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
-
             .projects-grid {
                 grid-template-columns: 1fr;
             }
-
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
             }
-
             .experience-timeline {
                 padding-left: 1rem;
             }
-
             .experience-item {
                 margin-left: 1rem;
             }
@@ -570,7 +528,6 @@
             transform: translateY(50px);
             transition: all 0.6s ease;
         }
-
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
@@ -579,18 +536,7 @@
 </head>
 <body>
     <div class="bg-animation"></div>
-    <div class="particles">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-    </div>
+    <div class="particles"></div> <!-- Removed static .particle divs -->
 
     <nav>
         <div class="nav-container">
@@ -607,7 +553,7 @@
 
     <header>
         <div class="hero-content">
-            <img src="profile.jpg" alt="Peraisoodan Viswanath S" class="profile-image">
+            <img src="profile.jpg" alt="Peraisoodan Viswanath S" class="profile-image" />
             <h1 class="hero-title">Hi, I'm Peraisoodan Viswanath S</h1>
             <p class="hero-subtitle">Data Scientist & AI/ML Engineer</p>
             <p class="hero-description">
@@ -619,7 +565,7 @@
                     <i class="fas fa-envelope"></i>
                     Get In Touch
                 </a>
-                <a href="https://drive.google.com/file/d/1zSM5zNOLmALP6OO7nXf6FvxgZxtbKeIb/view?usp=drivesdk" target="_blank" class="btn btn-secondary">
+                <a href="https://drive.google.com/file/d/1zSM5zNOLmALP6OO7nXf6FvxgZxtbKeIb/view?usp=drivesdk" target="_blank" rel="noopener" class="btn btn-secondary">
                     <i class="fas fa-file-pdf"></i>
                     View Resume
                 </a>
@@ -637,7 +583,7 @@
                         I specialize in building intelligent, data-driven systems that analyze complex datasets, extract meaningful patterns, generate actionable insights, 
                         and deliver scalable solutions to solve real-world challenges across diverse domains.
                     </p>
-                    <br>
+                    <br />
                     <p>
                         My journey in data science began during my undergraduate studies in Mechanical Engineering, where I discovered a deep fascination for 
                         creating systems that can learn, reason, and adapt over time. Since then, I've worked on a variety of impactful projects, including 
@@ -647,14 +593,16 @@
                 </div>
                 <div class="about-text">
                     <h3 style="color: #ff6b6b; margin-bottom: 1rem;">Education</h3>
-                    <p><strong>Bachelor of Technology (B.Tech) - Mechanical Engineering</strong><br>
-                    B S Abdur Rahman Crescent Institute of Science & Technology<br>
-                    Oct 2020 - May 2024 | CGPA: 9.14/10</p>
-                    <br>
-                    <p><strong>Certified Data Scientist</strong><br>
-                    DataMites Global Institute for Data Science<br>
-                    Aug 2024 - Jan 2025</p>
-                    <br>
+                    <p><strong>Bachelor of Technology (B.Tech) - Mechanical Engineering</strong><br />
+                    B S Abdur Rahman Crescent Institute of Science & Technology<br />
+                    Oct 2020 - May 2024 | CGPA: 9.14/10
+                    </p>
+                    <br />
+                    <p><strong>Certified Data Scientist</strong><br />
+                    DataMites Global Institute for Data Science<br />
+                    Aug 2024 - Jan 2025
+                    </p>
+                    <br />
                     <h3 style="color: #ff6b6b; margin-bottom: 1rem;">Languages</h3>
                     <p>English, Tamil</p>
                 </div>
@@ -752,7 +700,7 @@
                         interactive filters and real-time KPIs.
                     </p>
                     <div class="project-links">
-                        <a href="https://autoviz-dashboard.streamlit.app/" target="_blank" class="project-link">
+                        <a href="https://autoviz-dashboard.streamlit.app/" target="_blank" rel="noopener" class="project-link">
                             <i class="fas fa-external-link-alt"></i> Live Demo
                         </a>
                     </div>
@@ -765,7 +713,7 @@
                         help and troubleshooting.
                     </p>
                     <div class="project-links">
-                        <a href="https://smartml-pro.streamlit.app/" target="_blank" class="project-link">
+                        <a href="https://smartml-pro.streamlit.app/" target="_blank" rel="noopener" class="project-link">
                             <i class="fas fa-external-link-alt"></i> Live Demo
                         </a>
                     </div>
@@ -777,7 +725,7 @@
                         Processes user-uploaded PDF files and generates accurate, context-aware responses for knowledge management and research.
                     </p>
                     <div class="project-links">
-                        <a href="https://github.com/SPV-413/RAG-Chatbot.git" target="_blank" class="project-link">
+                        <a href="https://github.com/SPV-413/RAG-Chatbot.git" target="_blank" rel="noopener" class="project-link">
                             <i class="fab fa-github"></i> GitHub
                         </a>
                     </div>
@@ -789,7 +737,7 @@
                         Features customizable translations for specific language pairs, making it invaluable for global teams and travelers.
                     </p>
                     <div class="project-links">
-                        <a href="https://github.com/SPV-413/Multilingual-Translator-Chatbot.git" target="_blank" class="project-link">
+                        <a href="https://github.com/SPV-413/Multilingual-Translator-Chatbot.git" target="_blank" rel="noopener" class="project-link">
                             <i class="fab fa-github"></i> GitHub
                         </a>
                     </div>
@@ -802,7 +750,7 @@
                         workflow design and management.
                     </p>
                     <div class="project-links">
-                        <a href="https://github.com/SPV-413/Deepseek-R1-Local-AI-Chatbot.git" target="_blank" class="project-link">
+                        <a href="https://github.com/SPV-413/Deepseek-R1-Local-AI-Chatbot.git" target="_blank" rel="noopener" class="project-link">
                             <i class="fab fa-github"></i> GitHub
                         </a>
                     </div>
@@ -815,7 +763,7 @@
                         maintenance and breakdowns in industrial settings.
                     </p>
                     <div class="project-links">
-                        <a href="https://github.com/SPV-413/Fault-Diagnosis-Bucket-Elevator.git" target="_blank" class="project-link">
+                        <a href="https://github.com/SPV-413/Fault-Diagnosis-Bucket-Elevator.git" target="_blank" rel="noopener" class="project-link">
                             <i class="fab fa-github"></i> GitHub
                         </a>
                     </div>
@@ -876,11 +824,11 @@
                     </div>
                     <div class="contact-item">
                         <i class="fab fa-linkedin"></i>
-                        <a href="https://www.linkedin.com/in/peraisoodan-viswanath-s" target="_blank">LinkedIn Profile</a>
+                        <a href="https://www.linkedin.com/in/peraisoodan-viswanath-s" target="_blank" rel="noopener">LinkedIn Profile</a>
                     </div>
                     <div class="contact-item">
                         <i class="fab fa-github"></i>
-                        <a href="https://github.com/SPV-413" target="_blank">GitHub Profile</a>
+                        <a href="https://github.com/SPV-413" target="_blank" rel="noopener">GitHub Profile</a>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-mobile-alt"></i>
@@ -924,47 +872,45 @@
 
         // Reveal animation on scroll
         const reveals = document.querySelectorAll('.reveal');
-        
         function revealOnScroll() {
             reveals.forEach(reveal => {
                 const windowHeight = window.innerHeight;
                 const elementTop = reveal.getBoundingClientRect().top;
                 const elementVisible = 150;
-                
                 if (elementTop < windowHeight - elementVisible) {
                     reveal.classList.add('active');
                 }
             });
         }
-
         window.addEventListener('scroll', revealOnScroll);
         revealOnScroll(); // Initial check
 
-        // Dynamic particle animation
+        // Dynamic particle animation (dynamically creates particles)
         function createParticle() {
             const particle = document.createElement('div');
             particle.className = 'particle';
             particle.style.left = Math.random() * 100 + '%';
-            particle.style.width = particle.style.height = Math.random() * 5 + 3 + 'px';
-            particle.style.animationDuration = Math.random() * 3 + 3 + 's';
-            particle.style.opacity = Math.random() * 0.8 + 0.2;
-            
+            let size = (Math.random() * 4 + 3).toFixed(2);
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.animationDuration = (Math.random() * 3 + 3).toFixed(2) + 's';
+            particle.style.opacity = (Math.random() * 0.6 + 0.3).toFixed(2);
+            // Set initial mouse offset variables to zero
+            particle.style.setProperty('--mouseX', '0px');
+            particle.style.setProperty('--mouseY', '0px');
             document.querySelector('.particles').appendChild(particle);
-            
             setTimeout(() => {
                 particle.remove();
             }, 6000);
         }
-
         // Create particles periodically
         setInterval(createParticle, 300);
 
-        // Add some interactive hover effects
+        // Add some interactive hover effects on skill tags
         document.querySelectorAll('.skill-tag').forEach(tag => {
             tag.addEventListener('mouseenter', function() {
                 this.style.transform = 'scale(1.1) rotate(5deg)';
             });
-            
             tag.addEventListener('mouseleave', function() {
                 this.style.transform = 'scale(1) rotate(0deg)';
             });
@@ -983,7 +929,6 @@
             }
             typing();
         }
-
         // Initialize typing effect when page loads
         window.addEventListener('load', function() {
             const heroTitle = document.querySelector('.hero-title');
@@ -993,34 +938,30 @@
             }, 1000);
         });
 
-        // Add parallax effect to hero section
+        // Subtle parallax effect on hero-content only (not whole header)
         window.addEventListener('scroll', function() {
             const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('header');
-            const speed = scrolled * 0.5;
-            parallax.style.transform = `translateY(${speed}px)`;
+            const heroContent = document.querySelector('.hero-content');
+            const speed = scrolled * 0.2;
+            heroContent.style.transform = `translateY(${speed}px)`;
         });
 
         // Add mouse follow effect for particles
-        let mouseX = 0, mouseY = 0;
-        
+        // Do not override entire transform - use CSS variables to offset mouse position
         document.addEventListener('mousemove', function(e) {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
-        function followMouse() {
             const particles = document.querySelectorAll('.particle');
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
             particles.forEach((particle, index) => {
-                const speed = (index + 1) * 0.001;
-                const x = (mouseX - window.innerWidth / 2) * speed;
-                const y = (mouseY - window.innerHeight / 2) * speed;
-                particle.style.transform = `translate(${x}px, ${y}px)`;
+                // Calculate small offset based on mouse relative to center, scaled by speed
+                const speed = (index + 1) * 0.002; // tweak speed here
+                const deltaX = ((e.clientX - centerX) * speed).toFixed(2) + 'px';
+                const deltaY = ((e.clientY - centerY) * speed).toFixed(2) + 'px';
+                particle.style.setProperty('--mouseX', deltaX);
+                particle.style.setProperty('--mouseY', deltaY);
             });
-            requestAnimationFrame(followMouse);
-        }
-        
-        followMouse();
+        });
     </script>
 </body>
 </html>
+
