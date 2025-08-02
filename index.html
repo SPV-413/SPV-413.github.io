@@ -1,476 +1,541 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Peraisoodan Viswanath S — Portfolio</title>
-  
-  <!-- Google Font & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  
+  <meta charset="UTF-8">
+  <title>Peraisoodan Viswanath S | Data Scientist / AI-ML Engineer Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    /* VARIABLES */
-    :root {
-      --clr-dark:   #091921;
-      --clr-mid:    #15202b;
-      --clr-light:  #e1e4e8;
-      --clr-accent: #00ffe7;
-      --ff: 'Poppins', sans-serif;
+    /* BACKGROUND ANIMATION */
+    body, html {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      min-height: 100vh;
+      width: 100vw;
+      font-family: 'Roboto', Arial, sans-serif;
     }
-
-    /* RESET */
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--ff);
-      background: var(--clr-dark);
-      color: var(--clr-light);
-      line-height:1.6;
-      overflow-x: hidden;
+    #bg-animation {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: 0;
+      overflow: hidden;
     }
-    a { color: inherit; text-decoration: none; }
-    ul { list-style: none; }
-
-    /* GRADIENT BG */
-    body::before {
-      content:'';
-      position: fixed; top:0; left:0;
-      width:100%; height:100%;
-      background: linear-gradient(45deg, #091921, #15202b, #091921);
-      background-size: 600% 600%;
-      animation: gradient 20s ease infinite;
-      z-index: -2;
+    /* Glassmorphism Panel Style */
+    .glass {
+      background: rgba(23, 32, 42, 0.8);
+      border-radius: 22px;
+      box-shadow: 0 8px 48px 0 #00ffe794,
+                  0 3px 18px 0 #004;
+      backdrop-filter: blur(12px);
+      border: 1.5px solid rgba(0,255,231,0.14);
     }
-    @keyframes gradient {
-      0% { background-position:0% 50%; }
-      50%{ background-position:100% 50%; }
-      100%{ background-position:0% 50%; }
+    header {
+      margin-top: 2.5vw;
+      position: relative;
+      z-index: 2;
+      text-align: center;
     }
-
-    /* NETWORK CANVAS */
-    #network-canvas {
-      position: fixed; top:0; left:0;
-      width:100%; height:100%;
-      z-index:-3;
+    .profile-img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #06ffe5b5;
+      box-shadow: 0 0 24px 2px #00ffe7b0, 0 2px 18px #001d286e;
+      margin-bottom: 1.4rem;
+      background: #23243e;
     }
-
-    /* NAVBAR */
+    .hero-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.3rem;
+      color: #00ffe7;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 18px #00ffe7bb;
+    }
+    .subtitle {
+      font-size: 1.13rem;
+      color: #fff;
+      letter-spacing: 2px;
+      font-weight: 400;
+      margin-bottom: 12px;
+      text-shadow: 0 0 3px #00ffe77e;
+    }
     nav {
-      position: fixed; top:0; left:0; width:100%;
-      background: var(--clr-mid);
-      padding: 1rem 2rem;
-      display:flex; align-items:center; justify-content:space-between;
-      z-index:1000;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+      margin: 0 auto 2.1rem auto;
+      width: fit-content;
+      display: flex;
+      gap: 1.4rem;
+      position: relative;
+      z-index: 10;
+      padding: 0.85rem 2.2rem;
+      background: rgba(23,32,42,0.91);
+      box-shadow: 0 0 12px 0 #00ffe733;
+      border-radius: 12px;
     }
-    nav .logo { font-size:1.4rem; font-weight:600; }
-    nav ul { display:flex; gap:1.5rem; }
-    nav a { padding:.3rem .6rem; transition: color .2s; }
-    nav a:hover { color: var(--clr-accent); }
-    nav a.active { color: var(--clr-accent); }
-
-    /* SECTION WRAPPER */
-    section, header {
-      max-width: 900px; margin:0 auto;
-      padding:6rem 1.5rem 3rem;
-      opacity:0; transform: translateY(20px);
-      transition: all .6s ease-out;
+    nav a {
+      color: #00ffe7;
+      text-decoration: none;
+      text-shadow: 0 0 6px #00ffe7bb;
+      font-size: 1.07rem;
+      font-weight: 600;
+      transition: color 0.22s;
+      padding: 6px 14px;
+      border-radius: 8px;
+      letter-spacing: 1px;
     }
-    .visible { opacity:1; transform: translateY(0); }
+    nav a:hover, nav a.active {
+      color: #212950;
+      background: #00ffe7;
+      text-shadow: none;
+    }
+    /* MAIN CONTENT SECTIONS */
+    section {
+      max-width: 900px;
+      margin: 2.7rem auto;
+      padding: 2.4rem 2rem 1.9rem 2rem;
+      z-index: 2;
+      position: relative;
+      box-shadow: 0 2px 16px 0 #00ffe733, 0 1.5px 12px 0 #000a;
+      margin-bottom: 2.2rem;
+    }
+    section:not(:last-child) {
+      border-bottom: 1px solid #2e3a4e33;
+    }
     h2 {
-      font-size:2rem; margin-bottom:1rem;
-      color: var(--clr-accent);
-      border-left:4px solid var(--clr-accent);
-      padding-left:.6rem;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      color: #00ffe7;
+      text-shadow: 0 0 10px #00ffe7b7;
+      margin-bottom: 0.8rem;
+      letter-spacing: 1.2px;
     }
-    .subtitle { color:#a0bcd8; font-weight:300; margin-bottom:1.5rem; }
-
-    /* HERO */
-    #home {
-      height:100vh; display:flex;
-      flex-direction:column; align-items:center; justify-content:center;
-      text-align:center; position: relative; overflow:hidden;
+    h3 {
+      color: #fff;
+      margin-top: 0.7rem;
+      margin-bottom: 0.6rem;
+      font-size: 1.27rem;
+      text-shadow: 0 0 6px #00ffe7b7;
+      letter-spacing: 0.5px;
     }
-    #home h1 { font-size:3rem; margin-bottom:1rem; z-index:1; }
-    #home .typewriter {
-      font-size:1.3rem; color:var(--clr-accent);
-      overflow:hidden; white-space:nowrap; border-right:3px solid;
-      width:0; animation: typing 3s steps(40,end) forwards, blink .75s step-end infinite;
-      z-index:1;
+    /* Columns for info and pic */
+    .flex-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: flex-start;
     }
-    @keyframes typing { to { width:100%; } }
-    @keyframes blink { 50% { border-color: transparent; } }
-
-    /* FLOATING SHAPES */
-    .shape {
-      position:absolute; border-radius:50%;
-      background: rgba(0,255,231,0.15);
-      animation: float 6s ease-in-out infinite;
-      z-index:-1;
+    /* Lists and Projects */
+    ul {
+      color: #d0eaff;
+      font-size:1rem;
+      padding-left: 1.4em;
+      margin-top: 0.7em;
     }
-    .s1 { width:200px; height:200px; top:10%; left:5%; }
-    .s2 { width:120px; height:120px; bottom:15%; left:15%; animation-duration:8s;}
-    .s3 { width:180px; height:180px; top:30%; right:10%; animation-duration:5s;}
-    @keyframes float {
-      0%,100% { transform: translateY(0); }
-      50%     { transform: translateY(20px); }
+    li {
+      margin-bottom: 1.1em;
     }
-
-    /* ABOUT (two-col) */
-    #about .inner {
-      display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:center;
+    .project, .cert {
+      margin-bottom: 1.65rem;
+      background: rgba(34, 49, 63, 0.6);
+      border-radius: 11px;
+      padding: 1.25rem 1.15rem;
+      box-shadow: 0 2px 10px 0 #00ffe716;
+      color:#c4eef3;
+      position:relative;
     }
-    #about img {
-      width:100%; border-radius:8px;
-      box-shadow: 0 4px 20px rgba(0,255,231,0.2);
+    .project:last-child, .cert:last-child {
+      margin-bottom: 0;
     }
-    #about p { margin-bottom:1rem; }
-
-    /* TIMELINE */
-    .timeline { position:relative; padding-left:1.2rem; }
-    .timeline li {
-      margin-bottom:1.5rem; padding-left:1.2rem; position:relative;
+    .project-link {
+      color: #00ffe7;
+      font-weight: bold;
+      text-shadow: 0 0 6px #00ffe7bb;
+      text-decoration: none;
     }
-    .timeline li::before {
-      content:''; position:absolute; left:0; top:6px;
-      width:10px; height:10px; background:var(--clr-accent);
-      border-radius:50%;
+    .project-link:hover {
+      color: #fff;
+      text-decoration: underline;
     }
-
-    /* SKILLS GRID */
-    .skills-grid {
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-      gap:1rem;
+    /* SKILL ICONS PANEL */
+    .skills-icons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.35rem;
+      margin-top: 1rem;
     }
-    .skill-card {
-      background: var(--clr-mid); padding:1rem; border-radius:8px;
-      text-align:center; box-shadow:0 2px 12px rgba(0,255,231,0.1);
+    .skills-icons div {
+      display: flex;
+      align-items: center;
+      gap: 0.53rem;
+      background: rgba(44, 62, 80, 0.69);
+      padding: 0.5rem 1rem;
+      border-radius: 9px;
+      color: #fff;
+      box-shadow: 0 1px 6px #00ffe722;
+      font-size: 1.04rem;
     }
-    .skill-card i { font-size:1.6rem; color:var(--clr-accent); margin-bottom:.5rem; }
-    .skill-card span { display:block; margin-top:.5rem; font-weight:500; }
-
-    /* PROJECTS GRID */
-    .projects-grid {
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:1.5rem;
+    .skills-icons i {
+      font-size: 1.35rem;
+      color: #00ffe7;
+      text-shadow: 0 0 6px #00ffe7bb;
     }
-    .project-card {
-      background: var(--clr-mid); padding:1rem; border-radius:8px;
-      box-shadow:0 4px 20px rgba(0,255,231,0.1);
-      display:flex; flex-direction:column;
+    /* CONTACT BUTTONS */
+    .contact-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.1rem;
+      justify-content: flex-start;
+      margin-top: 0.7rem;
     }
-    .project-card h3 { margin-bottom:.5rem; color:var(--clr-accent); }
-    .project-card p { flex:1; font-size:.95rem; line-height:1.4; }
-    .project-card a {
-      margin-top:1rem; color:var(--clr-accent); font-weight:600;
-      transition: color .2s;
+    .contact-btn {
+      padding: 0.68em 1.35em;
+      background: #00ffe7;
+      color: #1b2735;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 8px;
+      box-shadow: 0 1px 10px #00ffe7aa;
+      transition: background 0.2s, color 0.22s;
+      display: flex;
+      align-items: center;
+      font-size: 1.09rem;
+      gap: 0.7em;
+      border: none;
+      outline: none;
+      cursor: pointer;
     }
-    .project-card a:hover { color:#fff; }
-
-    /* CERTIFICATIONS */
-    .cert-list { columns:2; column-gap:2rem; }
-    .cert-list li { margin-bottom:.8rem; }
-
-    /* CONTACT */
-    .contact-grid {
-      display:grid; grid-template-columns:1fr 1fr; gap:1rem;
+    .contact-btn:hover {
+      background: #222e4f;
+      color: #00ffe7;
+      box-shadow: 0 1px 18px #00ffe7;
     }
-    .contact-item {
-      background: var(--clr-mid); padding:1rem; border-radius:8px;
-      display:flex; align-items:center; gap:.8rem;
-      box-shadow:0 2px 12px rgba(0,255,231,0.1);
-      transition: transform .2s, background .2s;
+    /* FOOTER */
+    footer {
+      width: 100vw;
+      background: rgba(30, 30, 60, 0.97);
+      color: #fff;
+      text-align: center;
+      padding: 1.06rem 0 1.12rem 0;
+      font-size: 1.01rem;
+      letter-spacing: 0.6px;
+      border-top: 1.5px solid #2e3a4e;
+      margin-top: 2.7rem;
+      z-index: 10;
+      position:relative;
     }
-    .contact-item i { font-size:1.5rem; color:var(--clr-accent); }
-    .contact-item:hover {
-      transform: translateY(-4px);
-      background: rgba(0,255,231,0.1);
+    /* SECTION ANIMATION */
+    .animated-section {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 0.8s, transform 1s cubic-bezier(.23,1.12,.64,1);
     }
-
-    /* BUTTON */
-    .btn {
-      display:inline-block; margin-top:1rem; padding:.6rem 1.5rem;
-      background: var(--clr-accent); color: var(--clr-dark); font-weight:600;
-      border-radius:50px; transition: background .2s;
+    .animated-section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
-    .btn:hover { background:#029f8e; }
-
-    @media(max-width:800px) {
-      #about .inner { grid-template-columns:1fr; }
+    /* RESPONSIVE */
+    @media (max-width: 1000px) {
+      section, .glass { max-width: 99vw; }
     }
-    @media(max-width:600px) {
-      .cert-list { columns:1; }
-      .contact-grid { grid-template-columns:1fr; }
-      #home h1 { font-size:2.4rem; }
+    @media (max-width: 700px) {
+      section { padding: 1.1rem 0.4rem; }
+      nav { padding: 0.65rem 0.4rem; }
+      .skills-icons { gap: 0.6rem; }
+      .flex-row { flex-direction: column; }
+      .project, .cert { padding: 1rem 0.5rem; }
+    }
+    @media (max-width: 500px) {
+      .hero-title { font-size: 1.28rem; }
+      h2 { font-size:1.2rem; }
+      nav { flex-direction: column; gap: 0.41rem; font-size:1rem; }
+      .profile-img { width: 90px; height: 90px;}
+      .skills-icons { gap: 0.35rem; flex-direction: column; }
     }
   </style>
 </head>
-
 <body>
-  <!-- NETWORK BACKGROUND -->
-  <canvas id="network-canvas"></canvas>
-
-  <!-- NAVBAR -->
-  <nav>
-    <div class="logo">SPV Portfolio</div>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#certifications">Certifications</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- HERO -->
-  <header id="home">
-    <div class="shape s1"></div>
-    <div class="shape s2"></div>
-    <div class="shape s3"></div>
-
-    <h1>Peraisoodan Viswanath S</h1>
-    <div class="typewriter">Aspiring Data Scientist | AI/ML Engineer</div>
-  </header>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <h2>About Me</h2>
-    <p class="subtitle">Turning data into action, one insight at a time.</p>
-    <div class="inner">
-      <div>
-        <p>
-          Innovative data enthusiast with a Certified Data Scientist credential from DataMites Global Institute and hands-on experience as a Data Science Consultant Intern at Rubixe. Proficient in Data Wrangling, Statistical Analysis, Machine Learning, Deep Learning, NLP, LLMs, Python, MySQL, PySpark, Git, AWS, and data visualization using Tableau and Power BI. Demonstrated ability to deliver actionable insights through multiple POC projects and client assignments. Passionate about leveraging data-driven solutions to solve complex business problems and drive innovation.
-        </p>
-      </div>
-      <img src="profile.jpg" alt="Profile Picture">
-    </div>
-  </section>
-
-  <!-- EDUCATION -->
-  <section id="education">
-    <h2>Education</h2>
-    <ul class="timeline">
-      <li>
-        <strong>B.Tech – Mechanical Engineering</strong><br>
-        B S Abdur Rahman Crescent Institute of Science & Technology<br>
-        Oct 2020 – May 2024 | CGPA: 9.14/10 (First Class with Distinction)
-      </li>
-      <li>
-        <strong>Certified Data Scientist</strong><br>
-        DataMites Global Institute for Data Science<br>
-        Aug 2024 – Jan 2025
-      </li>
-    </ul>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="skills-grid">
-      <div class="skill-card"><i class="fas fa-brain"></i><span>Machine Learning</span></div>
-      <div class="skill-card"><i class="fas fa-project-diagram"></i><span>Deep Learning</span></div>
-      <div class="skill-card"><i class="fas fa-comment-dots"></i><span>NLP</span></div>
-      <div class="skill-card"><i class="fas fa-robot"></i><span>LLMs</span></div>
-      <div class="skill-card"><i class="fas fa-calculator"></i><span>Statistics</span></div>
-      <div class="skill-card"><i class="fab fa-python"></i><span>Python</span></div>
-      <div class="skill-card"><i class="fas fa-database"></i><span>MySQL</span></div>
-      <div class="skill-card"><i class="fab fa-git"></i><span>Git</span></div>
-      <div class="skill-card"><i class="fab fa-github"></i><span>GitHub</span></div>
-      <div class="skill-card"><i class="fab fa-aws"></i><span>AWS</span></div>
-      <div class="skill-card"><i class="fas fa-table"></i><span>Excel</span></div>
-      <div class="skill-card"><i class="fas fa-chart-bar"></i><span>Tableau</span></div>
-      <div class="skill-card"><i class="fab fa-microsoft"></i><span>Power BI</span></div>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <h2>Experience</h2>
-    <ul class="timeline">
-      <li>
-        <strong>Data Science Consultant Intern</strong> at Rubixe – AI Solutions (Remote)<br>
-        Nov 2024 – May 2025<br>
-        Applied advanced data science techniques to POCs and client assignments. Honed skills in Data Wrangling, Statistical Analysis, ML, DL, model evaluation, Python, MySQL, Tableau, and Power BI. Delivered impactful, data-driven solutions recognized by teams and clients.
-      </li>
-      <li>
-        <strong>Intern</strong> at Chennai Forge Products Pvt. Ltd., Chennai<br>
-        Jun 2023 – Jul 2023<br>
-        Handled machining operations, quality inspections, data collection, and reporting. Gained expertise in drilling, surface grinding, inspection instruments, and manufacturing processes.
-      </li>
-    </ul>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="projects-grid">
-
-      <div class="project-card">
-        <h3>AutoViz Dashboard App</h3>
-        <p>Interactive Streamlit & Plotly app that transforms CSV/Excel/JSON into dynamic dashboards with automated cleaning, caching, charts, filters, and real-time KPIs.</p>
-        <a href="https://autoviz-dashboard.streamlit.app/" target="_blank">View App →</a>
-      </div>
-
-      <div class="project-card">
-        <h3>SmartML Pro App</h3>
-        <p>End-to-end ML tool for classification & regression with EDA, preprocessing, hyperparameter tuning, SMOTE, plus an Azure OpenAI GPT-4.1 assistant in the sidebar.</p>
-        <a href="https://smartml-pro.streamlit.app/" target="_blank">View App →</a>
-      </div>
-
-      <div class="project-card">
-        <h3>RAG Chatbot (Flowise AI & Vectara)</h3>
-        <p>Retrieval-Augmented chatbot that processes PDF uploads, stores embeddings in Vectara, and answers via GPT-4o Mini—perfect for legal, academic, or support scenarios.</p>
-        <a href="https://github.com/SPV-413/RAG-Chatbot.git" target="_blank">GitHub →</a>
-      </div>
-
-      <div class="project-card">
-        <h3>Multilingual Translator Chatbot</h3>
-        <p>GPT-4o Mini & Flowise AI chatbot for translations across Tamil, Hindi, French, German, and more. Customizable language pairs for seamless communication.</p>
-        <a href="https://github.com/SPV-413/Multilingual-Translator-Chatbot.git" target="_blank">GitHub →</a>
-      </div>
-
-      <div class="project-card">
-        <h3>DeepSeek-R1 Local AI Chatbot</h3>
-        <p>Privacy-focused Flowise AI + Ollama chatbot powered by DeepSeek-R1. Handles complex queries with context-aware responses in an intuitive workflow interface.</p>
-        <a href="https://github.com/SPV-413/Deepseek-R1-Local-AI-Chatbot.git" target="_blank">GitHub →</a>
-      </div>
-
-      <div class="project-card">
-        <h3>Bucket Elevator Fault Diagnosis</h3>
-        <p>Fabricated pulley wear scenarios, extracted features via accelerometer data, and tested DT, ANN, and SVM. SVM achieved 94% accuracy to prevent unscheduled downtime.</p>
-        <a href="https://github.com/SPV-413/Fault-Diagnosis-Bucket-Elevator.git" target="_blank">GitHub →</a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- CERTIFICATIONS -->
-  <section id="certifications">
-    <h2>Certifications</h2>
-    <ul class="cert-list">
-      <li>Certified Data Scientist – IABAC</li>
-      <li>Certified Data Scientist – DataMites</li>
-      <li>Data Science Foundation – IABAC</li>
-      <li>Python Fundamentals for Beginners – Great Learning</li>
-      <li>Data Analysis using Excel – Great Learning</li>
-      <li>Generative AI Fundamentals – Databricks</li>
-      <li>Council of Europe Level A2 – Cambridge</li>
-      <li>Machine Learning with Python – Cognitive Class AI & IBM</li>
-      <li>Lloyds Banking Group Data Science Simulation – Forage</li>
-    </ul>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <h2>Contact & Resume</h2>
-    <div class="contact-grid">
-      <a class="contact-item" href="mailto:peraisoodanviswanath.s@gmail.com">
-        <i class="fas fa-envelope"></i> peraisoodanviswanath.s@gmail.com
-      </a>
-      <a class="contact-item" href="https://www.linkedin.com/in/peraisoodan-viswanath-s" target="_blank">
-        <i class="fab fa-linkedin"></i> LinkedIn Profile
-      </a>
-      <a class="contact-item" href="https://github.com/SPV-413" target="_blank">
-        <i class="fab fa-github"></i> github.com/SPV-413
-      </a>
-      <a class="contact-item" href="tel:+919500059621">
-        <i class="fas fa-mobile-alt"></i> +91 95000 59621
-      </a>
-    </div>
-    <a class="btn" href="https://drive.google.com/file/d/1zSM5zNOLmALP6OO7nXf6FvxgZxtbKeIb/view?usp=drivesdk" target="_blank">
-      Download Resume
-    </a>
-  </section>
-
-  <!-- FOOTER -->
-  <footer style="text-align:center; padding:2rem 0; font-size:.9rem; color:#a0bcd8;">
-    © 2025 Peraisoodan Viswanath S. All rights reserved.
-  </footer>
-
-  <!-- JS: CANVAS NETWORK, TYPEWRITER, SCROLL REVEAL, SCROLLSPY -->
+  <!-- Animated Background Canvas -->
+  <canvas id="bg-animation"></canvas>
   <script>
-    // Network background animation
-    const canvas = document.getElementById('network-canvas');
+    // Animated dots + lines background (custom, not like template)
+    const canvas = document.getElementById('bg-animation');
     const ctx = canvas.getContext('2d');
-    let nodes = [], maxDist = 120;
-    function initCanvas() {
-      canvas.width = innerWidth;
-      canvas.height = innerHeight;
-      nodes = [];
-      for (let i = 0; i < 80; i++) {
-        nodes.push({
-          x: Math.random()*canvas.width,
-          y: Math.random()*canvas.height,
-          vx: (Math.random()-0.5)*0.5,
-          vy: (Math.random()-0.5)*0.5
+    let w, h, dots;
+
+    function resize() {
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas.width = w;
+      canvas.height = h;
+      dots = [];
+      for (let i = 0; i < Math.floor(w*h/5500); i++) {
+        dots.push({
+          x: Math.random()*w,
+          y: Math.random()*h,
+          vx: (Math.random()-0.5)*0.55,
+          vy: (Math.random()-0.5)*0.7,
+          r: Math.random() * 2.3 + 1,
+          c: `rgba(0,255,231,${(Math.random()*0.55+0.12).toFixed(2)})`
         });
       }
     }
-    function drawNetwork() {
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      nodes.forEach(n => {
-        n.x += n.vx; n.y += n.vy;
-        if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
-        if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
-        ctx.fillStyle = 'rgba(0,255,231,0.8)';
+    resize();
+    window.addEventListener('resize', resize);
+
+    function animateBG() {
+      ctx.clearRect(0, 0, w, h);
+      for (let i=0; i<dots.length; i++) {
+        let d=dots[i];
+        d.x += d.vx;
+        d.y += d.vy;
+        if (d.x<0 || d.x>w) d.vx*=-1;
+        if (d.y<0 || d.y>h) d.vy*=-1;
         ctx.beginPath();
-        ctx.arc(n.x, n.y, 2.5, 0, Math.PI*2);
+        ctx.arc(d.x, d.y, d.r, 0, 2*Math.PI);
+        ctx.fillStyle = d.c;
+        ctx.shadowColor = '#00ffe7';
+        ctx.shadowBlur = 16;
         ctx.fill();
-      });
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          let dx = nodes[i].x - nodes[j].x;
-          let dy = nodes[i].y - nodes[j].y;
-          let dist = Math.hypot(dx, dy);
-          if (dist < maxDist) {
-            ctx.strokeStyle = `rgba(0,255,231,${1 - dist/maxDist})`;
-            ctx.lineWidth = 1;
+        ctx.shadowBlur = 0;
+        // Draw lines between close dots
+        for (let j=i+1; j<dots.length; j++) {
+          let d2=dots[j];
+          let dist = Math.hypot(d.x-d2.x, d.y-d2.y);
+          if (dist<120) {
             ctx.beginPath();
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.moveTo(d.x,d.y); ctx.lineTo(d2.x, d2.y);
+            ctx.strokeStyle = 'rgba(0,255,231,0.14)';
+            ctx.lineWidth = 0.85;
             ctx.stroke();
           }
         }
       }
-      requestAnimationFrame(drawNetwork);
+      requestAnimationFrame(animateBG);
     }
-    window.addEventListener('resize', initCanvas);
-    initCanvas(); drawNetwork();
+    animateBG();
+  </script>
+  <!-- Header & Nav -->
+  <header>
+    <img src="profile.jpg" alt="Profile Picture" class="profile-img">
+    <div class="hero-title">Peraisoodan Viswanath S</div>
+    <div class="subtitle">Aspiring Data Scientist | AI/ML Engineer</div>
+  </header>
+  <nav id="navbar" class="glass">
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#resume">Resume</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <!-- Sections -->
+  <main>
+    <section class="glass animated-section" id="about">
+      <h2>About Me</h2>
+      <p style="color:#c8f2ff;font-size:1.04rem;">
+        Innovative data enthusiast with a Certified Data Scientist credential from DataMites Global Institute and hands-on experience as a Data Science Consultant Intern at Rubixe. Proficient in Data Wrangling, Statistical Analysis, Machine Learning, Deep Learning, NLP, LLMs, Python, MySQL, PySpark, Git, AWS, and data visualization using tools like Tableau, and Power BI. Demonstrated ability to deliver actionable insights through multiple Proof of Concept (POC) projects and client assignments. Passionate about leveraging data-driven solutions to solve complex business problems and drive innovation.
+      </p>
+    </section>
 
-    // Typewriter
-    window.addEventListener('load', () => {
-      const el = document.querySelector('.typewriter');
-      el.style.width = '0';
-      setTimeout(() => {
-        el.style.animation = 'typing 3s steps(40,end) forwards, blink .75s step-end infinite';
-      }, 200);
-    });
+    <section class="glass animated-section" id="education">
+      <h2>Education</h2>
+      <ul>
+        <li>
+          <b>Bachelor of Technology (B.Tech) - Mechanical Engineering</b> (Oct 2020 - May 2024)<br>
+          B S Abdur Rahman Crescent Institute of Science & Technology<br>
+          CGPA: 9.14/10 | First Class with Distinction
+        </li>
+        <li>
+          <b>Certified Data Scientist - Data Science</b> (Aug 2024 - Jan 2025)<br>
+          DataMites Global Institute for Data Science
+        </li>
+      </ul>
+    </section>
 
-    // Scroll Reveal
-    const sections = document.querySelectorAll('section, header');
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
-    }, { threshold: 0.15 });
-    sections.forEach(s => obs.observe(s));
+    <section class="glass animated-section" id="skills">
+      <h2>Skills</h2>
+      <div class="skills-icons">
+        <div><i class="fas fa-brain"></i> Machine Learning</div>
+        <div><i class="fas fa-project-diagram"></i> Deep Learning</div>
+        <div><i class="fas fa-comment-dots"></i> NLP</div>
+        <div><i class="fas fa-robot"></i> LLMs</div>
+        <div><i class="fas fa-calculator"></i> Statistics</div>
+        <div><i class="fab fa-python"></i> Python</div>
+        <div><i class="fas fa-database"></i> MySQL</div>
+        <div><i class="fab fa-git"></i> Git</div>
+        <div><i class="fab fa-github"></i> GitHub</div>
+        <div><i class="fab fa-aws"></i> AWS</div>
+        <div><i class="fas fa-table"></i> Excel</div>
+        <div><i class="fas fa-chart-bar"></i> Tableau</div>
+        <div><i class="fab fa-microsoft"></i> Power BI</div>
+      </div>
+    </section>
 
-    // ScrollSpy
+    <section class="glass animated-section" id="experience">
+      <h2>Experience</h2>
+      <div class="project">
+        <h3>Data Science Consultant Intern, Rubixe - AI Solutions (Nov 2024 - May 2025)</h3>
+        <ul>
+          <li>
+            Applied advanced data science techniques to real-world projects, including multiple Proof of Concept (POC) and client assignments.
+            Developed expertise in Data Wrangling, Statistical Analysis, Machine Learning, Deep Learning, Model Evaluation, Python, MySQL, and data visualization using Tableau & Power BI.
+            Earned recognition from teams and clients for impactful, data-driven solutions.
+          </li>
+        </ul>
+      </div>
+      <div class="project">
+        <h3>Intern, Chennai Forge Products Pvt. Ltd. (Jun 2023 - Jul 2023)</h3>
+        <ul>
+          <li>
+            Worked in Production & Quality Inspection; managed machining operations, quality inspections, data collection, and report preparation.
+            Learned hands-on skills in drilling, grinding, quality control, and gained exposure to a range of machines and inspection tools.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="glass animated-section" id="projects">
+      <h2>Projects</h2>
+      <div class="project">
+        <h3>AutoViz Dashboard App: Visualize Data Effortlessly (Jun 2025)</h3>
+        <p>
+          AutoViz Dashboard is an advanced interactive data visualization app built with Streamlit and Plotly that transforms raw CSV, Excel, or JSON data into dynamic, professional dashboards. The application intelligently caches data to ensure rapid processing and performs automated data cleaning, allowing users to focus on extracting actionable insights. It offers a robust suite of charts-including histograms, line charts, bar charts, bubble charts, scatter plots, hexbin plots, treemaps, crosstab tables, count plots, box plots, pie charts, donut charts, time series, geospatial maps, and more-along with interactive filters and real-time Key Performance Indicators (KPIs). It's an ideal solution for data analysts & scientists, business leaders, researchers, and innovators seeking to convert complex data into clear, strategic visual narratives.
+          <br>
+          <a class="project-link" href="https://autoviz-dashboard.streamlit.app/" target="_blank"><i class="fas fa-arrow-right"></i> App Link</a>
+        </p>
+      </div>
+      <div class="project">
+        <h3>SmartML Pro App: End-to-End Machine Learning with AI Assistant (May 2025)</h3>
+        <p>
+          SmartML Pro is a Streamlit-based end-to-end machine learning app for data science professionals, supporting classification and regression tasks with data input via MySQL or file upload. It features comprehensive EDA, data preprocessing and a variety of ML models for both classification and regression, Hyperparameter tuning and evaluation metrics. The app integrates an AI assistant powered by Azure OpenAI GPT-4.1 accessible from the sidebar for help and troubleshooting. It enables rapid prototyping, automated data cleaning, handling imbalanced data with SMOTE, and interactive AI support to accelerate workflows and improve model performance in business use cases.
+          <br>
+          <a class="project-link" href="https://smartml-pro.streamlit.app/" target="_blank"><i class="fas fa-arrow-right"></i> App Link</a>
+        </p>
+      </div>
+      <div class="project">
+        <h3>RAG Chatbot with Flowise AI, GPT-4o Mini and Vectara (Mar 2025)</h3>
+        <p>
+          Retrieval-Augmented Generation (RAG) chatbot using Flowise AI for orchestration, GPT-4o Mini for language, and Vectara for vector semantic search. Accepts PDF knowledge sources, extracts, embeds, and retrieves context for accurate GPT-4o Mini answers.
+          <br>
+          <a class="project-link" href="https://github.com/SPV-413/RAG-Chatbot.git" target="_blank"><i class="fab fa-github"></i> GitHub Link</a>
+        </p>
+      </div>
+      <div class="project">
+        <h3>Multilingual Translator Chatbot with Flowise AI and GPT-4o Mini (Feb 2025)</h3>
+        <p>
+          Developed a multilingual translator chatbot utilizing GPT-4o Mini and Flowise AI for seamless translation between English, Tamil, Hindi, French, German and other languages. Users can customize translation pairs, ideal for global communication.
+          <br>
+          <a class="project-link" href="https://github.com/SPV-413/Multilingual-Translator-Chatbot.git" target="_blank"><i class="fab fa-github"></i> GitHub Link</a>
+        </p>
+      </div>
+      <div class="project">
+        <h3>DeepSeek-R1 Local AI Chatbot with Flowise AI & Ollama (Jan 2025)</h3>
+        <p>
+          Built a secure, local AI chatbot using Flowise AI and Ollama with DeepSeek-R1 model, enabling advanced natural language understanding, private deployment, and customizable workflows for organization-specific needs.
+          <br>
+          <a class="project-link" href="https://github.com/SPV-413/Deepseek-R1-Local-AI-Chatbot.git" target="_blank"><i class="fab fa-github"></i> GitHub Link</a>
+        </p>
+      </div>
+      <div class="project">
+        <h3>Fault Diagnosis of Bucket Elevator-Drive Pulley Using Machine Learning (Jan 2024 - May 2024)</h3>
+        <p>
+          Fabricated drive pulleys with artificial wear faults; collected accelerometer data under different wear conditions. Used MATLAB Toolbox for ML and DL algorithms. SVM achieved 94% accuracy, preventing unscheduled maintenance in industry.
+          <br>
+          <a class="project-link" href="https://github.com/SPV-413/Fault-Diagnosis-Bucket-Elevator.git" target="_blank"><i class="fab fa-github"></i> GitHub Link</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="glass animated-section" id="certifications">
+      <h2>Certifications</h2>
+      <div class="cert">
+        <ul>
+          <li>Certified Data Scientist - IABAC</li>
+          <li>Certified Data Scientist - DataMites</li>
+          <li>Data Science Foundation - IABAC</li>
+          <li>Python Fundamentals for Beginners - Great Learning</li>
+          <li>Data Analysis using Excel - Great Learning</li>
+          <li>Generative AI Fundamentals - DataBricks</li>
+          <li>Council of Europe Level A2 - Cambridge</li>
+          <li>Machine Learning with Python - Cognitive Class AI & IBM</li>
+          <li>Lloyds Banking Group’s Data Science Job Simulation - Forage</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="glass animated-section" id="resume">
+      <h2>Resume</h2>
+      <a href="https://drive.google.com/file/d/1zSM5zNOLmALP6OO7nXf6FvxgZxtbKeIb/view?usp=drivesdk" target="_blank" class="contact-btn">
+        <i class="fas fa-file-pdf"></i> View My Resume
+      </a>
+    </section>
+
+    <section class="glass animated-section" id="contact">
+      <h2>Contact</h2>
+      <div class="contact-btns">
+        <a href="mailto:peraisoodanviswanath.s@gmail.com" class="contact-btn"><i class="fas fa-envelope"></i>Email</a>
+        <a href="https://www.linkedin.com/in/peraisoodan-viswanath-s" target="_blank" class="contact-btn" style="background:#0077b5;color:#fff;"><i class="fab fa-linkedin"></i>LinkedIn</a>
+        <a href="https://github.com/SPV-413" target="_blank" class="contact-btn" style="background:#222e4f;color:#fff;"><i class="fab fa-github"></i>GitHub</a>
+        <a href="tel:+919500059621" class="contact-btn" style="background:#00964f;color:#fff;"><i class="fas fa-mobile-alt"></i>Mobile</a>
+      </div>
+    </section>
+  </main>
+  <footer class="glass">
+    © 2025 Peraisoodan Viswanath S. All rights reserved.
+  </footer>
+  <!-- Section Animate On Scroll JS -->
+  <script>
+    function animateSections() {
+      var sections = document.querySelectorAll('.animated-section');
+      var screenH = window.innerHeight;
+      for (let s of sections) {
+        let rect = s.getBoundingClientRect();
+        if(rect.top < screenH-80){
+          s.classList.add('visible');
+        }
+      }
+    }
+    window.addEventListener('scroll', animateSections);
+    window.addEventListener('load', animateSections);
+    // Navbar highlight
     const navLinks = document.querySelectorAll('nav a');
-    const secs = Array.from(navLinks).map(a => document.querySelector(a.getAttribute('href')));
-    window.addEventListener('scroll', () => {
-      const scrollPos = window.scrollY + 200;
-      secs.forEach((sec,i) => {
-        if (scrollPos >= sec.offsetTop && scrollPos < sec.offsetTop + sec.offsetHeight) {
-          navLinks.forEach(a=>a.classList.remove('active'));
-          navLinks[i].classList.add('active');
+    window.addEventListener('scroll', function(){
+      let fromTop = window.scrollY + 130;
+      navLinks.forEach(link => {
+        let section = document.querySelector(link.hash);
+        if (section) {
+          if(section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop){
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        }
+      });
+    });
+    // Smooth scroll
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e){
+        e.preventDefault();
+        let target = document.querySelector(this.hash);
+        if(target){
+          window.scrollTo({
+            top: target.offsetTop-65,
+            behavior: 'smooth'
+          });
         }
       });
     });
   </script>
 </body>
 </html>
-```
+
 
