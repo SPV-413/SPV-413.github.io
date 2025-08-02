@@ -27,77 +27,99 @@
       background: var(--clr-dark);
       color: var(--clr-light);
       line-height:1.6;
+      overflow-x: hidden;
     }
     a { color: inherit; text-decoration: none; }
     ul { list-style: none; }
+
+    /* GRADIENT BG */
+    body::before {
+      content:'';
+      position: fixed; top:0; left:0;
+      width:100%; height:100%;
+      background: linear-gradient(45deg, #091921, #15202b, #091921);
+      background-size: 600% 600%;
+      animation: gradient 20s ease infinite;
+      z-index: -2;
+    }
+    @keyframes gradient {
+      0% { background-position:0% 50%; }
+      50%{ background-position:100% 50%; }
+      100%{ background-position:0% 50%; }
+    }
+
+    /* NETWORK CANVAS */
+    #network-canvas {
+      position: fixed; top:0; left:0;
+      width:100%; height:100%;
+      z-index:-3;
+    }
 
     /* NAVBAR */
     nav {
       position: fixed; top:0; left:0; width:100%;
       background: var(--clr-mid);
       padding: 1rem 2rem;
-      display: flex; align-items: center; justify-content: space-between;
+      display:flex; align-items:center; justify-content:space-between;
       z-index:1000;
       box-shadow: 0 2px 8px rgba(0,0,0,0.5);
     }
     nav .logo { font-size:1.4rem; font-weight:600; }
     nav ul { display:flex; gap:1.5rem; }
+    nav a { padding:.3rem .6rem; transition: color .2s; }
     nav a:hover { color: var(--clr-accent); }
+    nav a.active { color: var(--clr-accent); }
 
     /* SECTION WRAPPER */
-    section {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 6rem 1.5rem 3rem;
+    section, header {
+      max-width: 900px; margin:0 auto;
+      padding:6rem 1.5rem 3rem;
       opacity:0; transform: translateY(20px);
       transition: all .6s ease-out;
     }
-    section.visible {
-      opacity:1; transform: translateY(0);
-    }
+    .visible { opacity:1; transform: translateY(0); }
     h2 {
       font-size:2rem; margin-bottom:1rem;
       color: var(--clr-accent);
       border-left:4px solid var(--clr-accent);
-      padding-left: 0.6rem;
+      padding-left:.6rem;
     }
-    .subtitle { color: #a0bcd8; font-weight:300; margin-bottom:1.5rem; }
+    .subtitle { color:#a0bcd8; font-weight:300; margin-bottom:1.5rem; }
 
     /* HERO */
     #home {
-      height:100vh; display:flex; flex-direction: column;
-      align-items:center; justify-content:center; text-align:center;
-      position: relative; overflow:hidden;
+      height:100vh; display:flex;
+      flex-direction:column; align-items:center; justify-content:center;
+      text-align:center; position: relative; overflow:hidden;
     }
-    #home h1 {
-      font-size:3rem; margin-bottom:1rem; z-index:1;
-    }
+    #home h1 { font-size:3rem; margin-bottom:1rem; z-index:1; }
     #home .typewriter {
       font-size:1.3rem; color:var(--clr-accent);
       overflow:hidden; white-space:nowrap; border-right:3px solid;
       width:0; animation: typing 3s steps(40,end) forwards, blink .75s step-end infinite;
       z-index:1;
     }
-    @keyframes typing { to { width: 100%; } }
+    @keyframes typing { to { width:100%; } }
     @keyframes blink { 50% { border-color: transparent; } }
 
-    /* HERO SHAPES */
+    /* FLOATING SHAPES */
     .shape {
       position:absolute; border-radius:50%;
       background: rgba(0,255,231,0.15);
       animation: float 6s ease-in-out infinite;
+      z-index:-1;
     }
-    .shape.s1 { width:200px; height:200px; top:10%; left:5%; }
-    .shape.s2 { width:120px; height:120px; bottom:15%; left:15%; animation-duration:8s;}
-    .shape.s3 { width:180px; height:180px; top:30%; right:10%; animation-duration:5s;}
+    .s1 { width:200px; height:200px; top:10%; left:5%; }
+    .s2 { width:120px; height:120px; bottom:15%; left:15%; animation-duration:8s;}
+    .s3 { width:180px; height:180px; top:30%; right:10%; animation-duration:5s;}
     @keyframes float {
       0%,100% { transform: translateY(0); }
       50%     { transform: translateY(20px); }
     }
 
-    /* ABOUT (two-columns) */
+    /* ABOUT (two-col) */
     #about .inner {
-      display: grid; grid-template-columns: 1fr 1fr; gap:2rem; align-items:center;
+      display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:center;
     }
     #about img {
       width:100%; border-radius:8px;
@@ -105,18 +127,15 @@
     }
     #about p { margin-bottom:1rem; }
 
-    /* TIMELINE LISTS */
-    .timeline {
-      position: relative; padding-left:1.2rem;
-    }
+    /* TIMELINE */
+    .timeline { position:relative; padding-left:1.2rem; }
     .timeline li {
-      margin-bottom:1.5rem; position: relative;
-      padding-left:1.2rem;
+      margin-bottom:1.5rem; padding-left:1.2rem; position:relative;
     }
     .timeline li::before {
       content:''; position:absolute; left:0; top:6px;
-      width:10px; height:10px;
-      background:var(--clr-accent); border-radius:50%;
+      width:10px; height:10px; background:var(--clr-accent);
+      border-radius:50%;
     }
 
     /* SKILLS GRID */
@@ -125,8 +144,8 @@
       gap:1rem;
     }
     .skill-card {
-      background: var(--clr-mid); padding:1rem; border-radius:8px; text-align:center;
-      box-shadow: 0 2px 12px rgba(0,255,231,0.1);
+      background: var(--clr-mid); padding:1rem; border-radius:8px;
+      text-align:center; box-shadow:0 2px 12px rgba(0,255,231,0.1);
     }
     .skill-card i { font-size:1.6rem; color:var(--clr-accent); margin-bottom:.5rem; }
     .skill-card span { display:block; margin-top:.5rem; font-weight:500; }
@@ -138,7 +157,7 @@
     }
     .project-card {
       background: var(--clr-mid); padding:1rem; border-radius:8px;
-      box-shadow: 0 4px 20px rgba(0,255,231,0.1);
+      box-shadow:0 4px 20px rgba(0,255,231,0.1);
       display:flex; flex-direction:column;
     }
     .project-card h3 { margin-bottom:.5rem; color:var(--clr-accent); }
@@ -150,9 +169,7 @@
     .project-card a:hover { color:#fff; }
 
     /* CERTIFICATIONS */
-    .cert-list {
-      columns:2; column-gap:2rem;
-    }
+    .cert-list { columns:2; column-gap:2rem; }
     .cert-list li { margin-bottom:.8rem; }
 
     /* CONTACT */
@@ -162,7 +179,7 @@
     .contact-item {
       background: var(--clr-mid); padding:1rem; border-radius:8px;
       display:flex; align-items:center; gap:.8rem;
-      box-shadow: 0 2px 12px rgba(0,255,231,0.1);
+      box-shadow:0 2px 12px rgba(0,255,231,0.1);
       transition: transform .2s, background .2s;
     }
     .contact-item i { font-size:1.5rem; color:var(--clr-accent); }
@@ -177,9 +194,8 @@
       background: var(--clr-accent); color: var(--clr-dark); font-weight:600;
       border-radius:50px; transition: background .2s;
     }
-    .btn:hover { background: #029f8e; }
+    .btn:hover { background:#029f8e; }
 
-    /* MEDIA QUERIES */
     @media(max-width:800px) {
       #about .inner { grid-template-columns:1fr; }
     }
@@ -192,6 +208,8 @@
 </head>
 
 <body>
+  <!-- NETWORK BACKGROUND -->
+  <canvas id="network-canvas"></canvas>
 
   <!-- NAVBAR -->
   <nav>
@@ -276,12 +294,12 @@
       <li>
         <strong>Data Science Consultant Intern</strong> at Rubixe – AI Solutions (Remote)<br>
         Nov 2024 – May 2025<br>
-        Applied advanced data science techniques to real-world POCs and client assignments. Honed skills in Data Wrangling, Statistical Analysis, ML, DL, model evaluation, Python, MySQL, Tableau and Power BI. Delivered impactful, data-driven solutions recognized by teams and clients.
+        Applied advanced data science techniques to POCs and client assignments. Honed skills in Data Wrangling, Statistical Analysis, ML, DL, model evaluation, Python, MySQL, Tableau, and Power BI. Delivered impactful, data-driven solutions recognized by teams and clients.
       </li>
       <li>
         <strong>Intern</strong> at Chennai Forge Products Pvt. Ltd., Chennai<br>
         Jun 2023 – Jul 2023<br>
-        Handled machining operations, quality inspections, data collection and reporting. Gained expertise in drilling, surface grinding, inspection instruments, and manufacturing processes.
+        Handled machining operations, quality inspections, data collection, and reporting. Gained expertise in drilling, surface grinding, inspection instruments, and manufacturing processes.
       </li>
     </ul>
   </section>
@@ -293,7 +311,7 @@
 
       <div class="project-card">
         <h3>AutoViz Dashboard App</h3>
-        <p>Interactive Streamlit & Plotly app that transforms CSV/Excel/JSON into dynamic dashboards with automated cleaning, caching, charts, filters and real-time KPIs.</p>
+        <p>Interactive Streamlit & Plotly app that transforms CSV/Excel/JSON into dynamic dashboards with automated cleaning, caching, charts, filters, and real-time KPIs.</p>
         <a href="https://autoviz-dashboard.streamlit.app/" target="_blank">View App →</a>
       </div>
 
@@ -311,7 +329,7 @@
 
       <div class="project-card">
         <h3>Multilingual Translator Chatbot</h3>
-        <p>GPT-4o Mini & Flowise AI chatbot for translations across Tamil, Hindi, French, German and more. Customizable language pairs for seamless communication.</p>
+        <p>GPT-4o Mini & Flowise AI chatbot for translations across Tamil, Hindi, French, German, and more. Customizable language pairs for seamless communication.</p>
         <a href="https://github.com/SPV-413/Multilingual-Translator-Chatbot.git" target="_blank">GitHub →</a>
       </div>
 
@@ -323,7 +341,7 @@
 
       <div class="project-card">
         <h3>Bucket Elevator Fault Diagnosis</h3>
-        <p>Fabricated pulley wear scenarios, extracted features via accelerometer data, and tested DT, ANN, SVM. SVM achieved 94% accuracy to prevent unscheduled downtime.</p>
+        <p>Fabricated pulley wear scenarios, extracted features via accelerometer data, and tested DT, ANN, and SVM. SVM achieved 94% accuracy to prevent unscheduled downtime.</p>
         <a href="https://github.com/SPV-413/Fault-Diagnosis-Bucket-Elevator.git" target="_blank">GitHub →</a>
       </div>
 
@@ -373,9 +391,57 @@
     © 2025 Peraisoodan Viswanath S. All rights reserved.
   </footer>
 
-  <!-- JS: TYPEWRITER & SCROLL REVEAL & SCROLLSPY -->
+  <!-- JS: CANVAS NETWORK, TYPEWRITER, SCROLL REVEAL, SCROLLSPY -->
   <script>
-    // Typewriter: restart on load
+    // Network background animation
+    const canvas = document.getElementById('network-canvas');
+    const ctx = canvas.getContext('2d');
+    let nodes = [], maxDist = 120;
+    function initCanvas() {
+      canvas.width = innerWidth;
+      canvas.height = innerHeight;
+      nodes = [];
+      for (let i = 0; i < 80; i++) {
+        nodes.push({
+          x: Math.random()*canvas.width,
+          y: Math.random()*canvas.height,
+          vx: (Math.random()-0.5)*0.5,
+          vy: (Math.random()-0.5)*0.5
+        });
+      }
+    }
+    function drawNetwork() {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      nodes.forEach(n => {
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
+        if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+        ctx.fillStyle = 'rgba(0,255,231,0.8)';
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, 2.5, 0, Math.PI*2);
+        ctx.fill();
+      });
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          let dx = nodes[i].x - nodes[j].x;
+          let dy = nodes[i].y - nodes[j].y;
+          let dist = Math.hypot(dx, dy);
+          if (dist < maxDist) {
+            ctx.strokeStyle = `rgba(0,255,231,${1 - dist/maxDist})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(drawNetwork);
+    }
+    window.addEventListener('resize', initCanvas);
+    initCanvas(); drawNetwork();
+
+    // Typewriter
     window.addEventListener('load', () => {
       const el = document.querySelector('.typewriter');
       el.style.width = '0';
@@ -385,20 +451,20 @@
     });
 
     // Scroll Reveal
-    const secs = document.querySelectorAll('section, header');
-    const obs = new IntersectionObserver((ents) => {
-      ents.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
+    const sections = document.querySelectorAll('section, header');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
     }, { threshold: 0.15 });
-    secs.forEach(s => obs.observe(s));
+    sections.forEach(s => obs.observe(s));
 
     // ScrollSpy
     const navLinks = document.querySelectorAll('nav a');
-    const sections = Array.from(navLinks).map(a => document.querySelector(a.getAttribute('href')));
+    const secs = Array.from(navLinks).map(a => document.querySelector(a.getAttribute('href')));
     window.addEventListener('scroll', () => {
-      const pos = window.scrollY + 200;
-      sections.forEach((sec,i) => {
-        if (pos >= sec.offsetTop && pos < sec.offsetTop + sec.offsetHeight) {
-          navLinks.forEach(a => a.classList.remove('active'));
+      const scrollPos = window.scrollY + 200;
+      secs.forEach((sec,i) => {
+        if (scrollPos >= sec.offsetTop && scrollPos < sec.offsetTop + sec.offsetHeight) {
+          navLinks.forEach(a=>a.classList.remove('active'));
           navLinks[i].classList.add('active');
         }
       });
@@ -406,4 +472,5 @@
   </script>
 </body>
 </html>
+```
 
