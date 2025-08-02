@@ -1,366 +1,558 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
-    <meta charset="UTF-8">  
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPV Portfolio</title>
+    <title>Peraisoodan Viswanath S - Data Scientist | AI/ML Engineer</title>
+    <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <style>
-        /* Space Background and Stars */
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-            overflow-x: hidden;
-            position: relative;
-        }
-        /* Star animation */
-        .stars, .stars2, .stars3 {
-            position: fixed;
-            width: 100vw;
-            height: 100vh;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 0;
-        }
-        .stars {
-            background: transparent url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/img/stars.png') repeat top center;
-            animation: moveStars 200s linear infinite;
-            opacity: 0.5;
-        }
-        .stars2 {
-            background: transparent url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/img/stars2.png') repeat top center;
-            animation: moveStars 400s linear infinite;
-            opacity: 0.3;
-        }
-        .stars3 {
-            background: transparent url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/img/stars3.png') repeat top center;
-            animation: moveStars 600s linear infinite;
-            opacity: 0.2;
-        }
-        @keyframes moveStars {
-            from {background-position: 0 0;}
-            to {background-position: 10000px 10000px;}
-        }
-
-        header {
-            background: rgba(30, 30, 60, 0.95);
-            color: #fff;
-            padding: 2rem 0 1rem 0;
-            text-align: center;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.5);
-            border-bottom: 1px solid #2e3a4e;
-            z-index: 1;
-            position: relative;
-        }
-        nav {
-            background: rgba(44, 62, 80, 0.95);
-            text-align: center;
-            padding: 0.5rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 2;
-            box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3);
-        }
-        nav a {
-            color: #fff;
-            margin: 0 1.2rem;
-            text-decoration: none;
-            font-weight: bold;
-            text-shadow: 0 0 8px #00ffea80;
-            transition: color 0.2s;
-        }
-        nav a:hover {
-            color: #00ffe7;
-        }
-        section {
-            padding: 2rem;
-            background: rgba(20, 24, 38, 0.95);
-            margin: 2rem auto;
-            border-radius: 16px;
-            box-shadow: 0 4px 32px 0 #00ffe733, 0 1.5px 8px 0 #000a;
-            max-width: 900px;
-            position: relative;
-            z-index: 1;
-        }
-        h2 {
-            color: #00ffe7;
-            text-shadow: 0 0 8px #00ffe7bb;
-            margin-top: 0;
-        }
-        h3 {
-            color: #fff;
-            margin-bottom: 0.6rem;
-            text-shadow: 0 0 8px #00ffe7bb;
-        }
-        ul {
-            list-style-type: square;
-            margin-left: 24px;
-            color: #d0eaff;
-        }
-        .project {
-            margin-bottom: 2.5rem;
-            background: rgba(34, 49, 63, 0.7);
-            border-radius: 10px;
-            padding: 1.2rem 1rem;
-            box-shadow: 0 2px 12px 0 #00ffe722;
-        }
-        footer {
-            background: rgba(30, 30, 60, 0.95);
-            color: #fff;
-            text-align: center;
-            padding: 1.2rem 0;
-            margin-top: 2rem;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            border-top: 1px solid #2e3a4e;
-            z-index: 1;
-            position: relative;
-        }
-        a.project-link {
-            color: #00ffe7;
-            font-weight: bold;
-            text-shadow: 0 0 6px #00ffe7bb;
-        }
-        a.project-link:hover {
-            text-decoration: underline;
-            color: #fff;
-        }
-        .skills-icons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.2rem;
-            margin-top: 1rem;
-        }
-        .skills-icons div {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(44, 62, 80, 0.7);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            color: #fff;
-            box-shadow: 0 1px 6px #00ffe722;
-        }
-        .skills-icons i {
-            font-size: 1.5rem;
-            color: #00ffe7;
-            text-shadow: 0 0 8px #00ffe7bb;
-        }
-        @media (max-width: 700px) {
-            section {
-                padding: 1rem;
-                margin: 1rem;
-            }
-            .skills-icons {
-                gap: 0.5rem;
-            }
-        }
-        @media (max-width: 500px) {
-            header {
-                font-size: 1.1rem;
-                padding: 1.2rem 0 0.5rem 0;
-            }
-            nav {
-                font-size: 0.95rem;
-            }
-            section {
-                padding: 0.7rem;
-                margin: 0.5rem;
-            }
-            .skills-icons {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="stars"></div>
-    <div class="stars2"></div>
-    <div class="stars3"></div>
-
-    <header>
-        <div style="text-align: center; margin-top: 30px;">
-  <img src="profile.jpg" alt="Profile Picture" class="profile-img"
-       style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover; object-position: center top; border: 3px solid #e1e4e8;" />
-</div>
-
-        <h1>Peraisoodan Viswanath S - Aspiring Data Scientist | AI/ML Engineer</h1>
-    </header>
-
-    <nav>
-        <a href="#about">About</a>
-        <a href="#education">Education</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#certifications">Certifications</a>
-        <a href="#contact">Contact</a>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">SPV</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#certifications" class="nav-link">Certifications</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </nav>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p style="color:#d0eaff;">
-            Innovative data enthusiast with a Certified Data Scientist credential from DataMites Global Institute and hands-on experience as a Data Science Consultant Intern at Rubixe. Proficient in Data Wrangling, Statistical Analysis, Machine Learning, Deep Learning, NLP, LLMs, Python, MySQL, PySpark, Git, AWS, and data visualization using tools like Tableau, and Power BI. Demonstrated ability to deliver actionable insights through multiple Proof of Concept (POC) projects and client assignments. Passionate about leveraging data-driven solutions to solve complex business problems and drive innovation.
-        </p>
-    </section>
-
-    <section id="education">
-        <h2>Education</h2>
-        <ul>
-            <li><b>Bachelor of Technology (B.Tech) - Mechanical Engineering</b> (Oct 2020 - May 2024)<br>
-                B S Abdur Rahman Crescent Institute of Science & Technology<br>
-                CGPA: 9.14/10 | First Class with Distinction
-            </li>
-            <br>
-            <li><b>Certified Data Scientist - Data Science</b> (Aug 2024 - Jan 2025)<br>
-                DataMites Global Institute for Data Science
-            </li>
-        </ul>
-    </section>
-
-    <section id="skills">
-        <h2>Skills</h2>
-        <div class="skills-icons">
-            <div><i class="fas fa-brain"></i> Machine Learning</div>
-            <div><i class="fas fa-project-diagram"></i> Deep Learning</div>
-            <div><i class="fas fa-comment-dots"></i> NLP</div>
-            <div><i class="fas fa-robot"></i> LLMs</div>
-            <div><i class="fas fa-calculator"></i> Statistics</div>
-            <div><i class="fab fa-python"></i> Python</div>
-            <div><i class="fas fa-database"></i> MySQL</div>
-            <div><i class="fab fa-git"></i> Git</div>
-            <div><i class="fab fa-github"></i> GitHub</div>
-            <div><i class="fab fa-aws"></i> AWS</div>
-            <div><i class="fas fa-table"></i> Excel</div>
-            <div><i class="fas fa-chart-bar"></i> Tableau</div>
-            <div><i class="fab fa-microsoft"></i> Power BI</div>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    Hi, I'm <span class="gradient-text">PERAISOODAN VISWANATH S</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Innovative data enthusiast with expertise in Machine Learning, Deep Learning, NLP, and AI solutions. 
+                    Passionate about leveraging data-driven insights to solve complex business problems and drive innovation 
+                    through intelligent systems and advanced analytics.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#about" class="btn btn-primary">Get to know me better</a>
+                    <a href="https://drive.google.com/file/d/1zSM5zNOLmALP6OO7nXf6FvxgZxtbKeIb/view?usp=drivesdk" target="_blank" class="btn btn-secondary">
+                        <i class="fas fa-download"></i> Resume
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-container">
+                    <img src="profile.jpg" alt="Peraisoodan Viswanath S" class="profile-img">
+                    <div class="image-glow"></div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
         </div>
     </section>
 
-    <section id="experience">
-        <h2>Experience</h2>
-        <ul>
-            <li><b>Data Science Consultant Intern</b> at Rubixe - AI Solutions, Remote (Nov 2024 - May 2025).<br>
-                Applied advanced data science techniques to real-world projects, including multiple Proof of Concept (POC) and client assignments. Throughout the internship, I honed skills in Data Wrangling, Statistical Analysis, Machine Learning, Deep Learning, Model Evaluation, Python, MySQL, and data visualization using tools like Tableau, and Power BI. My dedication and practical approach earned recognition from both teams and clients, enabling me to deliver impactful, data-driven solutions. 
-            </li>
-            <br>
-            <li><b>Intern</b> at Chennai Forge Products Pvt. Ltd., Chennai (Jun 2023 - Jul 2023).<br>
-                As a member of the Production & Quality Inspection department, I was responsible for machining operations, quality inspections, data collection, and report preparation for various components. This challenging role allowed me to develop hands-on skills in machining processes such as drilling and surface grinding, as well as quality inspection techniques. I gained valuable knowledge about different machines, inspection instruments, and the manufacturing processes and applications of a wide range of components.
-        </ul>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Get to know me</span>
+                <h2 class="section-title">About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        I'm a dedicated and passionate Data Scientist with strong expertise in Machine Learning, Deep Learning, 
+                        and Natural Language Processing. I specialize in building intelligent, data-driven systems that analyze 
+                        complex datasets, extract meaningful patterns, generate actionable insights, and deliver scalable solutions 
+                        to solve real-world challenges across diverse domains.
+                    </p>
+                    <p>
+                        My journey in Data Science began during my undergraduate studies in Mechanical Engineering, where I discovered 
+                        a deep fascination for creating systems that can learn, reason, and adapt over time. Since then, I've worked 
+                        on a variety of impactful projects, including machine learning models, deep learning applications, and NLP 
+                        solutions, which have allowed me to refine my technical abilities and gain hands-on experience with both 
+                        classical and cutting-edge algorithms.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">9.14</div>
+                            <div class="stat-label">CGPA</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">6+</div>
+                            <div class="stat-label">Projects</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">9+</div>
+                            <div class="stat-label">Certifications</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-info">
+                    <div class="info-card">
+                        <div class="info-header">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h3>Education</h3>
+                        </div>
+                        <div class="education-item">
+                            <h4>Bachelor's in Mechanical Engineering</h4>
+                            <span class="education-school">(B S Abdur Rahman Crescent Institute of Science & Technology)</span>
+                            <span class="education-year">2020 - 2024</span>
+                            <span class="education-location">Chennai, Tamil Nadu</span>
+                        </div>
+                        <div class="education-item">
+                            <h4>Certified Data Scientist</h4>
+                            <span class="education-school">(DataMites Global Institute)</span>
+                            <span class="education-year">2024 - 2025</span>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-header">
+                            <i class="fas fa-briefcase"></i>
+                            <h3>Experience Level</h3>
+                        </div>
+                        <p>Data Science Consultant Intern</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-header">
+                            <i class="fas fa-language"></i>
+                            <h3>Languages</h3>
+                        </div>
+                        <p>English, Tamil, Hindi</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="projects">
-        <h2>Projects</h2>
-
-        <div class="project">
-            <h3>AutoViz Dashboard App: Visualize Data Effortlessly (Jun 2025)</h3>
-            <p style="color:#d0eaff;">
-                AutoViz Dashboard is an advanced interactive data visualization app built with Streamlit and Plotly that transforms raw CSV, Excel, or JSON data into dynamic, professional dashboards. The application intelligently caches data to ensure rapid processing and performs automated data cleaning, allowing users to focus on extracting actionable insights. It offers a robust suite of charts-including histograms, line charts, bar charts, bubble charts, scatter plots, hexbin plots, treemaps, crosstab tables, count plots, box plots, pie charts, donut charts, time series, geospatial maps, and more-along with interactive filters and real-time Key Performance Indicators (KPIs). It's an ideal solution for data analysts & scientists, business leaders, researchers, and innovators seeking to convert complex data into clear, strategic visual narratives.
-                <br>
-                <a class="project-link" href="https://autoviz-dashboard.streamlit.app/" target="_blank">App Link</a>
-            </p>
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">What I do</span>
+                <h2 class="section-title">My technical toolkit for AI development</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Machine Learning</h3>
+                    <p>Building custom machine learning models for classification, regression, and clustering tasks using state-of-the-art algorithms.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>Deep Learning</h3>
+                    <p>Developing neural networks and deep learning models for complex pattern recognition and predictive analytics applications.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Data Analysis</h3>
+                    <p>Extracting insights from complex datasets through statistical analysis, data visualization, and predictive modeling.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-comment-dots"></i>
+                    </div>
+                    <h3>NLP & LLMs</h3>
+                    <p>Creating intelligent language processing systems and leveraging large language models for advanced text analysis.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Deployment</h3>
+                    <p>Deploying AI models to production environments using cloud platforms like AWS and containerization technologies.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Data Engineering</h3>
+                    <p>Data wrangling, processing with PySpark, MySQL database management, and building robust data pipelines.</p>
+                </div>
+            </div>
+            <div class="tech-stack">
+                <h3>Technologies & Tools</h3>
+                <div class="tech-icons">
+                    <div class="tech-item"><i class="fab fa-python"></i><span>Python</span></div>
+                    <div class="tech-item"><i class="fas fa-database"></i><span>MySQL</span></div>
+                    <div class="tech-item"><i class="fab fa-git"></i><span>Git</span></div>
+                    <div class="tech-item"><i class="fab fa-github"></i><span>GitHub</span></div>
+                    <div class="tech-item"><i class="fab fa-aws"></i><span>AWS</span></div>
+                    <div class="tech-item"><i class="fas fa-table"></i><span>Excel</span></div>
+                    <div class="tech-item"><i class="fas fa-chart-bar"></i><span>Tableau</span></div>
+                    <div class="tech-item"><i class="fab fa-microsoft"></i><span>Power BI</span></div>
+                </div>
+            </div>
         </div>
-        
-        <div class="project">
-            <h3>SmartML Pro App: End-to-End Machine Learning with AI Assistant (May 2025)</h3>
-            <p style="color:#d0eaff;">
-                SmartML Pro is a Streamlit-based end-to-end machine learning app for data science professionals, supporting classification and regression tasks with data input via MySQL or file upload. It features comprehensive EDA, data preprocessing and a variety of ML models for both classification and regression, Hyperparameter tuning and evaluation metrics. The app integrates an AI assistant powered by Azure OpenAI GPT-4.1 accessible from the sidebar for help and troubleshooting. It enables rapid prototyping, automated data cleaning, handling imbalanced data with SMOTE, and interactive AI support to accelerate workflows and improve model performance in business use cases.
-                <br>
-                <a class="project-link" href="https://smartml-pro.streamlit.app/" target="_blank">App Link</a>
-            </p>
-        </div>
-        
-        <div class="project">
-            <h3>RAG Chatbot with Flowise AI, GPT-4o Mini and Vectara (Mar 2025)</h3>
-            <p style="color:#d0eaff;">
-                Developed a Retrieval-Augmented Generation (RAG) chatbot using Flowise AI for workflow orchestration, GPT-4o Mini as the generative language model, and Vectara for efficient vector storage and semantic search. Designed to process user-uploaded PDF files, the system extracts text, converts it into vector embeddings via Vectara, and retrieves contextually relevant data to generate accurate, context-aware responses using GPT-4o Mini. By prioritizing PDFs as the knowledge source, the chatbot enables structured document analysis for industries reliant on static documents (e.g., legal, academic). Ideal for knowledge management, research, or customer support, it transforms static data into dynamic conversational experiences.
-                <br>
-                <a class="project-link" href="https://github.com/SPV-413/RAG-Chatbot.git" target="_blank">GitHub Link</a>
-            </p>
-        </div>
-
-        <div class="project">
-            <h3>Multilingual Translator Chatbot with Flowise AI and GPT-4o Mini (Feb 2025)</h3>
-            <p style="color:#d0eaff;">
-                Developed a multilingual translator chatbot utilizing GPT-4o Mini and Flowise AI, capable of translating between English and various languages such as Tamil, Hindi, French, German and more. The chatbot allows users to customize translations for specific language pairs, enhancing its versatility. Designed to facilitate seamless communication across different languages, this user-friendly system integrates the advanced capabilities of GPT-4o Mini with Flowise AI's intuitive interface. This makes it an invaluable tool for global teams, travelers or anyone who require quick and efficient translations, ultimately breaking down language barriers and improving accessibility in communication.
-                <br>
-                <a class="project-link" href="https://github.com/SPV-413/Multilingual-Translator-Chatbot.git" target="_blank">GitHub Link</a>
-            </p>
-        </div>
-
-        <div class="project">
-            <h3>DeepSeek-R1 Local AI Chatbot with Flowise AI & Ollama (Jan 2025)</h3>
-            <p style="color:#d0eaff;">
-                Developed a local AI chatbot using Flowise AI and the Ollama framework with the DeepSeek-R1 model, ensuring data privacy and customization for specific needs. This setup enables powerful conversational AI capabilities. Integrated advanced natural language understanding and generation through DeepSeek-R1, allowing the chatbot to handle complex queries and deliver accurate, context-aware responses. Flowise's user-friendly interface simplifies workflow design and management. Making it accessible for developers and enhancing overall user experience.
-                <br>
-                <a class="project-link" href="https://github.com/SPV-413/Deepseek-R1-Local-AI-Chatbot.git" target="_blank">GitHub Link</a>
-            </p>
-        </div>
-
-        <div class="project">
-            <h3>Fault Diagnosis of Bucket Elevator-Drive Pulley Using Machine Learning (Jan 2024 - May 2024)</h3>
-            <p style="color:#d0eaff;">
-                Fabricated drive pulleys with artificial wear faults (pulley shaft wear and outer layer wear) and collected data under three conditions: good, pulley shaft wear, and outer layer wear using an accelerometer sensor. Extracted statistical features from the data and utilized MATLAB's Machine Learning and Deep Learning Toolbox to test Decision Tree, Artificial Neural Network, and Support Vector Machine (SVM) algorithms. The SVM algorithm achieved the highest accuracy of 94%, aiding in the prevention of unscheduled maintenance and breakdowns in industrial settings.
-                <br>
-                <a class="project-link" href="https://github.com/SPV-413/Fault-Diagnosis-Bucket-Elevator.git" target="_blank">GitHub Link</a>
-            </p>
-        </div>
-
     </section>
 
-    <section id="certifications">
-        <h2>Certifications</h2>
-        <ul>
-            <li>Certified Data Scientist - IABAC</li>
-            <li>Certified Data Scientist - DataMites</li>
-            <li>Data Science Foundation - IABAC</li>
-            <li>Python Fundamentals for Beginners - Great Learning</li>
-            <li>Data Analysis using Excel - Great Learning</li>
-            <li>Generative AI Fundamentals - DataBricks</li>
-            <li>Council of Europe Level A2 - Cambridge</li>
-            <li>Machine Learning with Python - Cognitive Class AI & IBM</li>
-            <li>Lloyds Banking Group’s Data Science Job Simulation - Forage</li>
-        </ul>
-    </section>
-    <section id="resume">
-    <h2>Resume</h2>
-    <p>
-        <a href="https://drive.google.com/file/d/1zSM5zNOLmALP6OO7nXf6FvxgZxtbKeIb/view?usp=drivesdk" target="_blank" class="project-link">
-            <i class="fas fa-file-pdf"></i> View My Resume
-        </a>
-    </p>
-</section>
-
-    <section id="contact">
-        <h2>Contact</h2>
-        <p style="color:#d0eaff;"><a href="mailto:peraisoodanviswanath.s@gmail.com" style="color:#00ffe7;">
-    <i class="fas fa-envelope"></i> Email
-  </a>
-</p>
-<p style="color:#d0eaff;"><a href="https://www.linkedin.com/in/peraisoodan-viswanath-s" target="_blank" style="color:#007bff;">
-    <i class="fab fa-linkedin"></i> LinkedIn
-  </a>
-</p>
-<p style="color:#d0eaff;"><a href="https://github.com/SPV-413" target="_blank" style="color:#ffffff;">
-    <i class="fab fa-github"></i> GitHub 
-  </a>
-</p>
-<p style="color:#d0eaff;"><a href="tel:+919500059621" style="color:#a0f070;">
-    <i class="fas fa-mobile-alt"></i> Mobile
-  </a>
-</p>
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">My Journey</span>
+                <h2 class="section-title">Professional Experience</h2>
+            </div>
+            <div class="experience-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Nov 2024 - May 2025</div>
+                        <h3>Data Science Consultant Intern</h3>
+                        <h4>Rubixe - AI Solutions, Remote</h4>
+                        <p>
+                            Applied advanced data science techniques to real-world projects, including multiple Proof of Concept (POC) 
+                            and client assignments. Honed skills in Data Wrangling, Statistical Analysis, Machine Learning, Deep Learning, 
+                            Model Evaluation, Python, MySQL, and data visualization using tools like Tableau and Power BI. Delivered 
+                            impactful, data-driven solutions earning recognition from both teams and clients.
+                        </p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Jun 2023 - Jul 2023</div>
+                        <h3>Intern</h3>
+                        <h4>Chennai Forge Products Pvt. Ltd., Chennai</h4>
+                        <p>
+                            Worked in the Production & Quality Inspection department, responsible for machining operations, quality 
+                            inspections, data collection, and report preparation. Developed hands-on skills in machining processes 
+                            such as drilling and surface grinding, as well as quality inspection techniques. Gained valuable knowledge 
+                            about manufacturing processes and applications of various components.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <footer>
-     </p> © 2025 Peraisoodan Viswanath S. All rights reserved. </p>
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">My Work</span>
+                <h2 class="section-title">Some of my recent AI work</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://autoviz-dashboard.streamlit.app/" target="_blank" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-date">Jun 2025</div>
+                        <h3>AutoViz Dashboard App</h3>
+                        <p>
+                            An advanced interactive data visualization app built with Streamlit and Plotly that transforms raw data 
+                            into dynamic, professional dashboards with intelligent caching and automated data cleaning.
+                        </p>
+                        <div class="project-tech">
+                            <span>Streamlit</span>
+                            <span>Plotly</span>
+                            <span>Python</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://smartml-pro.streamlit.app/" target="_blank" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-date">May 2025</div>
+                        <h3>SmartML Pro App</h3>
+                        <p>
+                            End-to-end machine learning app supporting classification and regression with comprehensive EDA, 
+                            preprocessing, hyperparameter tuning, and an AI assistant powered by Azure OpenAI GPT-4.1.
+                        </p>
+                        <div class="project-tech">
+                            <span>Streamlit</span>
+                            <span>ML</span>
+                            <span>Azure OpenAI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/SPV-413/RAG-Chatbot.git" target="_blank" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-date">Mar 2025</div>
+                        <h3>RAG Chatbot with Flowise AI</h3>
+                        <p>
+                            Retrieval-Augmented Generation chatbot using Flowise AI, GPT-4o Mini, and Vectara for processing 
+                            PDF files and generating context-aware responses with semantic search capabilities.
+                        </p>
+                        <div class="project-tech">
+                            <span>RAG</span>
+                            <span>GPT-4o Mini</span>
+                            <span>Vectara</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/SPV-413/Multilingual-Translator-Chatbot.git" target="_blank" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-date">Feb 2025</div>
+                        <h3>Multilingual Translator Chatbot</h3>
+                        <p>
+                            Advanced multilingual translator using GPT-4o Mini and Flowise AI, supporting multiple language pairs 
+                            including Tamil, Hindi, French, German for seamless global communication.
+                        </p>
+                        <div class="project-tech">
+                            <span>NLP</span>
+                            <span>GPT-4o Mini</span>
+                            <span>Flowise AI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/SPV-413/Deepseek-R1-Local-AI-Chatbot.git" target="_blank" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-date">Jan 2025</div>
+                        <h3>DeepSeek-R1 Local AI Chatbot</h3>
+                        <p>
+                            Local AI chatbot using Flowise AI and Ollama framework with DeepSeek-R1 model, ensuring data privacy 
+                            and customization with advanced natural language understanding capabilities.
+                        </p>
+                        <div class="project-tech">
+                            <span>Local AI</span>
+                            <span>Ollama</span>
+                            <span>DeepSeek-R1</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/SPV-413/Fault-Diagnosis-Bucket-Elevator.git" target="_blank" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-date">Jan 2024 - May 2024</div>
+                        <h3>Fault Diagnosis of Bucket Elevator</h3>
+                        <p>
+                            Machine learning-based fault diagnosis system for industrial bucket elevator drive pulleys using 
+                            accelerometer data and SVM algorithm achieving 94% accuracy for predictive maintenance.
+                        </p>
+                        <div class="project-tech">
+                            <span>Machine Learning</span>
+                            <span>SVM</span>
+                            <span>MATLAB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="certifications">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Achievements</span>
+                <h2 class="section-title">Professional credentials and achievements</h2>
+            </div>
+            <div class="certifications-grid">
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Certified Data Scientist</h3>
+                    <p>IABAC</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Certified Data Scientist</h3>
+                    <p>DataMites</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Data Science Foundation</h3>
+                    <p>IABAC</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h3>Python Fundamentals</h3>
+                    <p>Great Learning</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <i class="fas fa-table"></i>
+                    </div>
+                    <h3>Data Analysis using Excel</h3>
+                    <p>Great Learning</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Generative AI Fundamentals</h3>
+                    <p>DataBricks</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Council of Europe Level A2</h3>
+                    <p>Cambridge</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h3>Machine Learning with Python</h3>
+                    <p>IBM</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Data Science Job Simulation</h3>
+                    <p>Forage</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Let's Connect</span>
+                <h2 class="section-title">Ready to collaborate on your next AI project</h2>
+                <p class="section-description">
+                    I'm always excited to work on innovative AI projects that make a real impact. Whether you're looking 
+                    for machine learning solutions, data analysis, or AI system development, I'm here to help bring your ideas to life.
+                </p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email</h3>
+                        <a href="mailto:peraisoodanviswanath.s@gmail.com">peraisoodanviswanath.s@gmail.com</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Phone</h3>
+                        <a href="tel:+919500059621">+91 9500059621</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <h3>LinkedIn</h3>
+                        <a href="https://www.linkedin.com/in/peraisoodan-viswanath-s" target="_blank">Connect with me</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <h3>GitHub</h3>
+                        <a href="https://github.com/SPV-413" target="_blank">View my code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2025 Peraisoodan Viswanath S. All rights reserved.</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/peraisoodan-viswanath-s" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/SPV-413" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:peraisoodanviswanath.s@gmail.com">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
     </footer>
+
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
 
