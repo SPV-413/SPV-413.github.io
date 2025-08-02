@@ -265,10 +265,9 @@
   </style>
 </head>
 <body>
-  <!-- Animated Background Canvas -->
   <canvas id="bg-animation"></canvas>
   <script>
-    // Animated dots + lines background (custom, not like template)
+    // Neon purple animated dots + lines background
     const canvas = document.getElementById('bg-animation');
     const ctx = canvas.getContext('2d');
     let w, h, dots;
@@ -286,7 +285,8 @@
           vx: (Math.random()-0.5)*0.55,
           vy: (Math.random()-0.5)*0.7,
           r: Math.random() * 2.3 + 1,
-          c: `rgba(0,255,231,${(Math.random()*0.55+0.12).toFixed(2)})`
+          // Neon purple
+          c: 'rgba(180, 80, 255,' + (Math.random()*0.55+0.12).toFixed(2) + ')'
         });
       }
     }
@@ -304,7 +304,7 @@
         ctx.beginPath();
         ctx.arc(d.x, d.y, d.r, 0, 2*Math.PI);
         ctx.fillStyle = d.c;
-        ctx.shadowColor = '#00ffe7';
+        ctx.shadowColor = '#b450ff';
         ctx.shadowBlur = 16;
         ctx.fill();
         ctx.shadowBlur = 0;
@@ -315,7 +315,7 @@
           if (dist<120) {
             ctx.beginPath();
             ctx.moveTo(d.x,d.y); ctx.lineTo(d2.x, d2.y);
-            ctx.strokeStyle = 'rgba(0,255,231,0.14)';
+            ctx.strokeStyle = 'rgba(180, 80, 255,0.14)';
             ctx.lineWidth = 0.85;
             ctx.stroke();
           }
